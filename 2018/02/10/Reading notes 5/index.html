@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,Bioinformatics," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Text Processing with Awk">
+<meta name="keywords" content="Linux,Bioinformatics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux skill 5 awk">
+<meta property="og:url" content="http://yoursite.com/2018/02/10/Reading notes 5/index.html">
+<meta property="og:site_name" content="H&amp;J Home">
+<meta property="og:description" content="Text Processing with Awk">
+<meta property="og:updated_time" content="2018-01-30T16:14:13.001Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux skill 5 awk">
+<meta name="twitter:description" content="Text Processing with Awk">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'AURFS67F7M',
+      apiKey: '',
+      indexName: 'hao',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/10/Reading notes 5/"/>
+
+
+
+
+
+  <title>Linux skill 5 awk | H&J Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H&J Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/Reading notes 5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H&J Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux skill 5 awk</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-10T15:39:37+00:00">
+                2018-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/Bioinformatics-Data-Skills-Vince-Buffalo/" itemprop="url" rel="index">
+                    <span itemprop="name">Bioinformatics Data Skills Vince  Buffalo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Text-Processing-with-Awk"><a href="#Text-Processing-with-Awk" class="headerlink" title="Text Processing with Awk"></a>Text Processing with Awk</h2><a id="more"></a>
+<h3 id="simply-mimic-cat"><a href="#simply-mimic-cat" class="headerlink" title="simply  mimic  cat"></a>simply  mimic  cat</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;&#123; print $0 &#125;&apos; example.bed</span><br></pre></td></tr></table></figure>
+<h3 id="Awk-can-also-mimic-cut"><a href="#Awk-can-also-mimic-cut" class="headerlink" title="Awk can also mimic cut:"></a>Awk can also mimic cut:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;&#123; print $2 &quot;\t&quot; $3 &#125;&apos; example.bed</span><br></pre></td></tr></table></figure>
+<h3 id="We-can-subtractwithin-a-pattern-to-calculate-the-length-of-a-feature-and-filter-on-that-expression"><a href="#We-can-subtractwithin-a-pattern-to-calculate-the-length-of-a-feature-and-filter-on-that-expression" class="headerlink" title="We  can  subtractwithin a pattern to calculate the length of a feature, and filter on that expression"></a>We  can  subtractwithin a pattern to calculate the length of a feature, and filter on that expression</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;$3 - $2 &gt; 18&apos; example.bed</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a == b</td>
+<td>a is equal to b</td>
+</tr>
+<tr>
+<td>a != b</td>
+<td>a is not equal to b</td>
+</tr>
+<tr>
+<td>a &lt; b</td>
+<td>a is less than b</td>
+</tr>
+<tr>
+<td>a is less than b</td>
+<td>a is greater than b</td>
+</tr>
+<tr>
+<td>a &lt;= b</td>
+<td>a is less than or equal to b</td>
+</tr>
+<tr>
+<td>a &gt;= b</td>
+<td>a is greater than or equal to b</td>
+</tr>
+<tr>
+<td>a ~ b</td>
+<td>a matches regular expression pattern b</td>
+</tr>
+<tr>
+<td>a !~ b</td>
+<td>a does not match regular expression pattern b</td>
+</tr>
+<tr>
+<td>a &amp;&amp; b</td>
+<td>logical and a and b</td>
+</tr>
+<tr>
+<td>a \</td>
+<td>\</td>
+<td>b</td>
+<td>logical or a and b</td>
+</tr>
+<tr>
+<td>logical or a and b</td>
+<td>not a (logical negation)</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;$1 ~ /chr1/ &amp;&amp; $3 - $2 &gt; 10&apos; example.bed</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>chr1    26      39<br>chr1    32      47<br>chr1    9       28</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;$1 ~ /chr2|chr3/ &#123; print $0 &quot;\t&quot; $3 - $2 &#125;&apos; example.bed</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>chr3    11      28      17<br>chr3    16      27      11<br>chr2    35      54      19</p>
+</blockquote>
+<h4 id="calculate-the-mean-feature-length-in-example-bed"><a href="#calculate-the-mean-feature-length-in-example-bed" class="headerlink" title="calculate the mean feature length in example.bed"></a>calculate the mean feature length in example.bed</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;BEGIN&#123; s = 0 &#125;; &#123; s += ($3-$2) &#125;; END&#123; print &quot;mean: &quot; s/NR &#125;;&apos; example.bed</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>mean: 14</p>
+<ul>
+<li>BEGIN is useful to initialize and set up variables<h3 id="convert-a-three-column-CSV-to-a-tab-file"><a href="#convert-a-three-column-CSV-to-a-tab-file" class="headerlink" title="convert a three-column CSV to a tab file"></a>convert a three-column CSV to a tab file</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk-F&quot;,&quot;  -v  OFS=&quot;\t&quot;  &#123;print  $1,$2,$3&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>set the record (RS), output field (OFS), and out‐put record (ORS) separators, with -v<h3 id="extract-particular-row"><a href="#extract-particular-row" class="headerlink" title="extract particular row"></a>extract particular row</h3></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;NR &gt;= 3 &amp;&amp; NR &lt;= 5&apos; example.bed</span><br></pre></td></tr></table></figure>
+<h3 id="convert-between-BED-and-GTF"><a href="#convert-between-BED-and-GTF" class="headerlink" title="convert  between  BED  and  GTF"></a>convert  between  BED  and  GTF</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;!/^#/ &#123; print $1 &quot;\t&quot; $4-1 &quot;\t&quot; $5 &#125;&apos; Mus_musculus.GRCm38.75_chr1.gtf | \   head -n 3</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>1       3054232 3054733<br>1       3054232 3054733<br>1       3054232 3054733</p>
+<h3 id="associative-array-count-the-number-of-features-third-column-belonging-to-the-gene“Lypla1-”"><a href="#associative-array-count-the-number-of-features-third-column-belonging-to-the-gene“Lypla1-”" class="headerlink" title="associative  array, count  the  number  of  features  (third  column)  belonging  to  the  gene“Lypla1.”"></a>associative  array, count  the  number  of  features  (third  column)  belonging  to  the  gene“Lypla1.”</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;/Lypla1/ &#123; feature[$3] += 1 &#125;; \    END &#123; for (k in feature)          \    print k &quot;\t&quot; feature[k] &#125;&apos; Mus_musculus.GRCm38.75_chr1.gtf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>CDS          56<br>UTR          24<br>gene         1<br>start_codon  5<br>stop_codon   5<br>transcript   9</p>
+<h3 id="built-in-functions"><a href="#built-in-functions" class="headerlink" title="built-in functions"></a>built-in functions</h3></blockquote>
+<table>
+<thead>
+<tr>
+<th>length(s)</th>
+<th>Length of a string s.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tolower(s)</td>
+<td>Convert string s to lowercase</td>
+</tr>
+<tr>
+<td>toupper(s)</td>
+<td>Convert string s to uppercase</td>
+</tr>
+<tr>
+<td>substr(s, i, j)</td>
+<td>Return the substring of s that starts at i and ends at j</td>
+</tr>
+<tr>
+<td>split(s, x, d)</td>
+<td>Split string s into chunks by delimiter d, place chunks in array x</td>
+</tr>
+<tr>
+<td>sub(f, r, s)</td>
+<td>Find regular expression f in s and replace it with r (modifyings in place); use gsub for global substitution; returns a positivevalue if string is found</td>
+</tr>
+</tbody>
+</table>
+<h3 id="other-solution"><a href="#other-solution" class="headerlink" title="other  solution"></a>other  solution</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;Lypla1&quot; Mus_musculus.GRCm38.75_chr1.gtf | cut -f 3 | sort | uniq -c</span><br></pre></td></tr></table></figure>
+<h3 id="Bioawk-An-Awk-for-Biological-Formats"><a href="#Bioawk-An-Awk-for-Biological-Formats" class="headerlink" title="Bioawk: An Awk for Biological Formats"></a>Bioawk: An Awk for Biological Formats</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bioawk -c help</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>bed:        1:chrom 2:start 3:end 4:name 5:score 6:strand 7:thickstart            8:thickend 9:rgb 10:blockcount 11:blocksizes 12:blockstarts<br>sam:        1:qname 2:flag 3:rname 4:pos 5:mapq 6:cigar 7:rnext 8:pnext            9:tlen 10:seq 11:qual<br>vcf:        1:chrom 2:pos 3:id 4:ref 5:alt 6:qual 7:filter 8:info<br>gff:        1:seqname 2:source 3:feature 4:start 5:end 6:score 7:filter            8:strand 9:group 10:attribute<br>fastx:        1:name 2:seq 3:qual 4:comment  </p>
+<h3 id="append-a-column-withthe-length-of-the-feature-end-position-start-position-for-all-protein-coding-genes"><a href="#append-a-column-withthe-length-of-the-feature-end-position-start-position-for-all-protein-coding-genes" class="headerlink" title="append a column withthe length of the feature (end position - start position) for all protein coding genes"></a>append a column withthe length of the feature (end position - start position) for all protein coding genes</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bioawk -c gff &apos;$3 ~ /gene/ &amp;&amp; $2 ~ /protein_coding/ \    &#123;print $seqname,$end-$start&#125;&apos; Mus_musculus.GRCm38.75_chr1.gtf | head -n 4</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>1       465597<br>1       16807<br>1       5485<br>1       12533</p>
+<h3 id="turn-a-FASTQ-file-into-a-FASTA-file"><a href="#turn-a-FASTQ-file-into-a-FASTA-file" class="headerlink" title="turn a FASTQ file into a FASTA file"></a>turn a FASTQ file into a FASTA file</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bioawk -c fastx &apos;&#123;print &quot;&gt;&quot;$name&quot;\n&quot;$seq&#125;&apos; contam.fastq | head -n 4</span><br></pre></td></tr></table></figure>
+<h3 id="counting-the-number-of-FASTQ-FASTA-entries"><a href="#counting-the-number-of-FASTQ-FASTA-entries" class="headerlink" title="counting the number of FASTQ/FASTA entries"></a>counting the number of FASTQ/FASTA entries</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bioawk -c fastx &apos;END&#123;print NR&#125;&apos; contam.fastq</span><br></pre></td></tr></table></figure>
+<h3 id="revcomp-can-be-used-to-reverse-complement-a-sequence"><a href="#revcomp-can-be-used-to-reverse-complement-a-sequence" class="headerlink" title="revcomp() can be used to reverse complement a sequence"></a>revcomp() can be used to reverse complement a sequence</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bioawk -c fastx &apos;&#123;print &quot;&gt;&quot;$name&quot;\n&quot;revcomp($seq)&#125;&apos; contam.fastq | head -n 4</span><br></pre></td></tr></table></figure>
+<h3 id="creating-a-table-of-sequence-lengths"><a href="#creating-a-table-of-sequence-lengths" class="headerlink" title="creating a table of sequence lengths"></a>creating a table of sequence lengths</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bioawk -c fastx &apos;&#123;print $name,length($seq)&#125;&apos; \    Mus_musculus.GRCm38.75.dna_rm.toplevel.fa.gz &gt; mm_genome.txt</span><br></pre></td></tr></table></figure>
+<h3 id="two-usful-options"><a href="#two-usful-options" class="headerlink" title="two usful options"></a>two usful options</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ head -n 4 genotypes.txtid</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ind_A   ind_B   ind_C   ind_D<br>S_000   T/T     A/T     A/T     T/T<br>S_001   G/C     C/C     C/C     C/G<br>S_002   C/A     A/C     C/C     C/C</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bioawk -c hdr &apos;$ind_A == $ind_B &#123;print $id&#125;&apos; genotypes.txt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>S_001<br>S_003<br>S_005<br>S_008<br>S_009</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/Bioinformatics/" rel="tag"># Bioinformatics</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/10/Reading notes 4/" rel="next" title="Linux skill 4">
+                <i class="fa fa-chevron-left"></i> Linux skill 4
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/10/skill 1/" rel="prev" title="统计属性后，如何将在一个自动很多文件下的文件根据行名合并起来？">
+                统计属性后，如何将在一个自动很多文件下的文件根据行名合并起来？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim"
+                alt="Hao Zhou" />
+            
+              <p class="site-author-name" itemprop="name">Hao Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-Processing-with-Awk"><span class="nav-number">1.</span> <span class="nav-text">Text Processing with Awk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#simply-mimic-cat"><span class="nav-number">1.1.</span> <span class="nav-text">simply  mimic  cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Awk-can-also-mimic-cut"><span class="nav-number">1.2.</span> <span class="nav-text">Awk can also mimic cut:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#We-can-subtractwithin-a-pattern-to-calculate-the-length-of-a-feature-and-filter-on-that-expression"><span class="nav-number">1.3.</span> <span class="nav-text">We  can  subtractwithin a pattern to calculate the length of a feature, and filter on that expression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#calculate-the-mean-feature-length-in-example-bed"><span class="nav-number">1.3.1.</span> <span class="nav-text">calculate the mean feature length in example.bed</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convert-a-three-column-CSV-to-a-tab-file"><span class="nav-number">1.4.</span> <span class="nav-text">convert a three-column CSV to a tab file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#extract-particular-row"><span class="nav-number">1.5.</span> <span class="nav-text">extract particular row</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convert-between-BED-and-GTF"><span class="nav-number">1.6.</span> <span class="nav-text">convert  between  BED  and  GTF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#associative-array-count-the-number-of-features-third-column-belonging-to-the-gene“Lypla1-”"><span class="nav-number">1.7.</span> <span class="nav-text">associative  array, count  the  number  of  features  (third  column)  belonging  to  the  gene“Lypla1.”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#built-in-functions"><span class="nav-number">1.8.</span> <span class="nav-text">built-in functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#other-solution"><span class="nav-number">1.9.</span> <span class="nav-text">other  solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bioawk-An-Awk-for-Biological-Formats"><span class="nav-number">1.10.</span> <span class="nav-text">Bioawk: An Awk for Biological Formats</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#append-a-column-withthe-length-of-the-feature-end-position-start-position-for-all-protein-coding-genes"><span class="nav-number">1.11.</span> <span class="nav-text">append a column withthe length of the feature (end position - start position) for all protein coding genes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#turn-a-FASTQ-file-into-a-FASTA-file"><span class="nav-number">1.12.</span> <span class="nav-text">turn a FASTQ file into a FASTA file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#counting-the-number-of-FASTQ-FASTA-entries"><span class="nav-number">1.13.</span> <span class="nav-text">counting the number of FASTQ/FASTA entries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#revcomp-can-be-used-to-reverse-complement-a-sequence"><span class="nav-number">1.14.</span> <span class="nav-text">revcomp() can be used to reverse complement a sequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#creating-a-table-of-sequence-lengths"><span class="nav-number">1.15.</span> <span class="nav-text">creating a table of sequence lengths</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#two-usful-options"><span class="nav-number">1.16.</span> <span class="nav-text">two usful options</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Zhou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

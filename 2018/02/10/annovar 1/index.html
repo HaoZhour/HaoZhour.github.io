@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Bioinformatics,Annovar," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="此文只是用于作者和所有初接触annovar软件者分享交流。更深入学习请仔细阅读参考文献。">
+<meta name="keywords" content="Bioinformatics,Annovar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="annovar 对人类基因组和非人类基因组variants注释流程">
+<meta property="og:url" content="http://yoursite.com/2018/02/10/annovar 1/index.html">
+<meta property="og:site_name" content="H&amp;J Home">
+<meta property="og:description" content="此文只是用于作者和所有初接触annovar软件者分享交流。更深入学习请仔细阅读参考文献。">
+<meta property="og:updated_time" content="2018-01-30T16:14:49.706Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="annovar 对人类基因组和非人类基因组variants注释流程">
+<meta name="twitter:description" content="此文只是用于作者和所有初接触annovar软件者分享交流。更深入学习请仔细阅读参考文献。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'AURFS67F7M',
+      apiKey: '',
+      indexName: 'hao',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/10/annovar 1/"/>
+
+
+
+
+
+  <title>annovar 对人类基因组和非人类基因组variants注释流程 | H&J Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H&J Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/annovar 1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H&J Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">annovar 对人类基因组和非人类基因组variants注释流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-10T15:39:37+00:00">
+                2018-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Evolution/" itemprop="url" rel="index">
+                    <span itemprop="name">Evolution</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>此文只是用于作者和所有初接触annovar软件者分享交流。更深入学习请仔细阅读参考文献。<br><a id="more"></a><br>ANNOVAR是一个perl编写的命令行工具，能在安装了perl解释器的多种操作系统上执行。允许多种输入文件格式，包括最常被使用的VCF格式。输出文件也有多种格式，包括注释过的VCF文件、用tab或者逗号分隔的text文件。ANNOVAR能快速注释遗传变异并预测其功能。类似的variants注释软件还有VEP，snpEff，VAAST，AnnTools等等。</p>
+</blockquote>
+<p>ANNOVAR支持三种不同形式的注释： gene-based，region-based 和filter-based。这三种注释分别针对于每一个variant的不同方面：</p>
+<ul>
+<li>基于基因的注释（gene-based annotation）揭示variant与已知基因直接的关系以及对其产生的功能性影响。</li>
+<li>基于区域的注释（region-based annotation）揭示variant 与不同基因组特定段的关系，例如：它是否落在已知的保守基因组区域。</li>
+<li>基于过滤子的注释（ filter-based annotation）则给出这个variant的一系列信息，如： population frequency in different populations 和various types of variant-deleteriousness prediction scores，这些可被用来过滤掉一些公共的及 probably（大概，肯定的成分较大,，是most likely）nondeleterious variants。</li>
+</ul>
+<h3 id="一、用ANNOVAR注释人类基因组variants信息"><a href="#一、用ANNOVAR注释人类基因组variants信息" class="headerlink" title="一、用ANNOVAR注释人类基因组variants信息"></a>一、用ANNOVAR注释人类基因组variants信息</h3><h4 id="（I）填写登记表，下载ANNOVAR软件（http-annovar-openbio-informatics-org-），-‘annovar-latest-tar-gz’-file，解压文件。"><a href="#（I）填写登记表，下载ANNOVAR软件（http-annovar-openbio-informatics-org-），-‘annovar-latest-tar-gz’-file，解压文件。" class="headerlink" title="（I）填写登记表，下载ANNOVAR软件（http://annovar.openbio informatics.org/）， ‘annovar.latest.tar.gz’ file，解压文件。"></a>（I）填写登记表，下载ANNOVAR软件（<a href="http://annovar.openbio" target="_blank" rel="noopener">http://annovar.openbio</a> informatics.org/）， ‘annovar.latest.tar.gz’ file，解压文件。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvfz annovar.latest.tar.gz</span><br></pre></td></tr></table></figure>
+<p>关键：也可将目录路径添加到操作系统的环境变量中去，这样就可以通过输出命令名直接运行 ANNOVAR脚本。</p>
+<h4 id="（II）下载所有需要的注释信息库，对于基因注释的已经在下好的-ANNOVAR-package中了。如果要进行其他注释，需要按以下命令下载数据库到-‘humandb-’-目录里："><a href="#（II）下载所有需要的注释信息库，对于基因注释的已经在下好的-ANNOVAR-package中了。如果要进行其他注释，需要按以下命令下载数据库到-‘humandb-’-目录里：" class="headerlink" title="（II）下载所有需要的注释信息库，对于基因注释的已经在下好的 ANNOVAR package中了。如果要进行其他注释，需要按以下命令下载数据库到 ‘humandb/’ 目录里："></a>（II）下载所有需要的注释信息库，对于基因注释的已经在下好的 ANNOVAR package中了。如果要进行其他注释，需要按以下命令下载数据库到 ‘humandb/’ 目录里：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">perl annotate_variation.pl --downdb --buildver hg19 cytoBand humandb/  </span><br><span class="line">perl annotate_variation.pl --downdb --webfrom annovar --buildver hg19 1000g2014oct humandb/  </span><br><span class="line">perl annotate_variation.pl --downdb --webfrom annovar --buildver hg19 exac03 humandb/  </span><br><span class="line">perl annotate_variation.pl --downdb --webfrom annovar --buildver hg19 ljb26_all humandb/  </span><br><span class="line">perl annotate_variation.pl --downdb --webfrom annovar --buildver hg19 clinvar_20140929 humandb/  </span><br><span class="line">perl annotate_variation.pl --downdb --webfrom annovar --buildver hg19 snp138 humandb/</span><br></pre></td></tr></table></figure>
+<p>这里下载的是几个通常用到的数据库：</p>
+<ul>
+<li>‘cytoBand’ 是每个细胞间band（cytogenetic band）的染色体坐标信息 ,‘1000g2014oct’ for alternative allele frequency in the 1000 Genomes Project （version October 2014）。是2014年10版，1000基因组项目（和ExAV外显子集合联合一样，是公开、开放的数据库）里面供选择的等位基因频率信息。</li>
+<li>‘exac03’for the variants reported in the Exome Aggregation Consortium（version 0.3）。是0.3版外显子集合联合中报道过的variants。</li>
+<li>‘ljb26_all’ for various functional deleteriousness prediction scores from the dbNSFP database（version 2.6）。dbNSFP: A Lightweight Database of Human NonsynonymousSNPsand TheirFunctionalPredictions on ResearchGate。</li>
+<li>‘clinvar_20140929’ for the variants reported in the ClinVar database（version 20140929）。ClinVar是美国国家生物技术信息中心（NCBI）于2012年11月宣布、2013年4月正式启动的公共、免费数据库。作为核心数据库，ClinVar数据库整合了十多个不同类型数据库、通过标准的命名法来描述疾病，同时支持科研人员将数据下载到本地中，开展更为个性化的研究。（更多信息戳这里~）</li>
+<li>‘snp138’ for the dbSNP database（version 138）。注意：a、第一个命令中不包含 ‘–webfrom annovar’ 选项, 因此是从the UCSC Genome Browser annotation database下载文件的； b、 ‘–buildver hg19’ 选项是针对hg19这一版的基因组的；c、运行上面命令后，在 ‘humandb/’ 目录下会多几个以 ‘hg19’为前缀的文件。 </li>
+</ul>
+<h4 id="（III）用the-‘table-annovar-pl’来注释variants。允许在同一命令中用输出的特定顺序来对多个注释类型进行-自定义选择（custom-selection）。"><a href="#（III）用the-‘table-annovar-pl’来注释variants。允许在同一命令中用输出的特定顺序来对多个注释类型进行-自定义选择（custom-selection）。" class="headerlink" title="（III）用the ‘table_annovar.pl’来注释variants。允许在同一命令中用输出的特定顺序来对多个注释类型进行 自定义选择（custom selection）。"></a>（III）用the ‘table_annovar.pl’来注释variants。允许在同一命令中用输出的特定顺序来对多个注释类型进行 自定义选择（custom selection）。</h4><p>输入下列命令，用之前下载好的注释数据库来注释vcf格式文件中的variants。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl table_annovar.pl &lt;variant.vcf&gt; humandb/ --outfile final --buildver hg19 --protocol refGene,cytoBand,1000g2014oct_eur,1000g2014oct_afr,exac03,ljb26_all,clinvar_20140929,snp138 --operation g,r,f,f,f,f,f,f --vcfinput</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>注意：<variant.vcf> 参考（refers to）输入的vcf文件的名称。  ‘–protocol’ 选项后跟注释来源数据库的准确名称。 ‘–operation’ 选项后跟注释的类型： ‘g’ 表示基于基因的注释（gene-based annotation）、‘r’ 表示基于区域的注释（region-based annotation） 、‘f’ 表示基于筛选子的注释（filter-based annotation）。‘–outfile’ 选项是指定输出文件的前缀 。</variant.vcf></p>
+</li>
+<li><p>关键步骤（CRITICAL STEP）：<br>1、确保注释数据库的名称正确并且是按你想要在输出文件中显示的顺序排列的；<br>2、确保 ‘–operation’指定的注释类型顺序和‘–protocol’指定的数据库顺序是一致的；<br>3、确保每个protocal名称或注释类型之间只有一个逗号，并且没有空白。</p>
+</li>
+</ul>
+<h4 id="（IV）-‘final-hg19-multianno-vcf’-输出文件应该是以个VCF格式文件，INFO那列以-‘key-value’-形式、-‘-’分割成几个小区域。"><a href="#（IV）-‘final-hg19-multianno-vcf’-输出文件应该是以个VCF格式文件，INFO那列以-‘key-value’-形式、-‘-’分割成几个小区域。" class="headerlink" title="（IV） ‘final.hg19_multianno.vcf’.输出文件应该是以个VCF格式文件，INFO那列以 ‘key=value’ 形式、 ‘;’分割成几个小区域。"></a>（IV） ‘final.hg19_multianno.vcf’.输出文件应该是以个VCF格式文件，INFO那列以 ‘key=value’ 形式、 ‘;’分割成几个小区域。</h4><ul>
+<li>例如：‘Func.refGene=intronic;Gene.refGene=SAMD11’.  每个键值对代表一个ANNOVAR注释信息。输出文件可以用为VCF格式文件设计的基因分析软件进一步处理。</li>
+</ul>
+<h4 id="（V）-‘final-hg19-multianno-txt’-每一行代表一个variant-。用tab分隔，多余列为加上的注释信息，顺序按-‘–protocol’-选项所设定的注释类型argument。"><a href="#（V）-‘final-hg19-multianno-txt’-每一行代表一个variant-。用tab分隔，多余列为加上的注释信息，顺序按-‘–protocol’-选项所设定的注释类型argument。" class="headerlink" title="（V） ‘final.hg19_multianno.txt’. 每一行代表一个variant 。用tab分隔，多余列为加上的注释信息，顺序按  ‘–protocol’ 选项所设定的注释类型argument。"></a>（V） ‘final.hg19_multianno.txt’. 每一行代表一个variant 。用tab分隔，多余列为加上的注释信息，顺序按  ‘–protocol’ 选项所设定的注释类型argument。</h4><h3 id="二、用ANNOVAR对非人类的物种进行基于基因的注释（Gene-based-annotation）"><a href="#二、用ANNOVAR对非人类的物种进行基于基因的注释（Gene-based-annotation）" class="headerlink" title="二、用ANNOVAR对非人类的物种进行基于基因的注释（Gene-based annotation）"></a>二、用ANNOVAR对非人类的物种进行基于基因的注释（Gene-based annotation）</h3><p>CR ITICAL STEP关键：以注释大猩猩基因组（with the genome build identifier as panTro2.）为例。ANNOVAR的安装同上文的一（I）。</p>
+<p>对于gene-based annotation，ANNOVAR需要 genePred format 的 gene definition file和 FASTA format 的transcript sequence file。</p>
+<h4 id="（I）输入以下命令，下载大猩猩基因组定义文件（gene-definition-file）及序列的-FASTA-文件到‘chimpdb-’目录。"><a href="#（I）输入以下命令，下载大猩猩基因组定义文件（gene-definition-file）及序列的-FASTA-文件到‘chimpdb-’目录。" class="headerlink" title="（I）输入以下命令，下载大猩猩基因组定义文件（gene definition file）及序列的 FASTA 文件到‘chimpdb/’目录。"></a>（I）输入以下命令，下载大猩猩基因组定义文件（gene definition file）及序列的 FASTA 文件到‘chimpdb/’目录。</h4><p>perl annotate_variation.pl –downdb –buildver panTro2 gene chimpdb/<br>perl annotate_variation.pl –downdb –buildver panTro2 seq chimpdb/panTro2_seq</p>
+<h4 id="（II）注意ANNOVAR数据库中只包含人类基因组已建好的转录本，不包含其他物种的。故需要按以下命令自行建立对应物种的transcript-FASTA-file。"><a href="#（II）注意ANNOVAR数据库中只包含人类基因组已建好的转录本，不包含其他物种的。故需要按以下命令自行建立对应物种的transcript-FASTA-file。" class="headerlink" title="（II）注意ANNOVAR数据库中只包含人类基因组已建好的转录本，不包含其他物种的。故需要按以下命令自行建立对应物种的transcript FASTA file。"></a>（II）注意ANNOVAR数据库中只包含人类基因组已建好的转录本，不包含其他物种的。故需要按以下命令自行建立对应物种的transcript FASTA file。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl retrieve_seq_from_fasta.pl chimpdb/panTro2_refGene.txt --seqdir chimpdb/panTro2_seq --format refGene --outfile chimpdb/panTro2_refGeneMrna.fa</span><br></pre></td></tr></table></figure>
+<ul>
+<li>‘–seqdir’说明下载的序列文件的所在目录；</li>
+<li>‘–format’ 说明 gene definition file的格式.；</li>
+<li>‘–outfile’ 指定输出mRNA 序列文件的名称；</li>
+<li>关键：跟在‘–outfile’后的输出文件名应该是 ‘<buildver>_refGeneMrna.fa’这种形式，否则下一步找不到正确的 transcript FASTA sequence file.</buildver></li>
+</ul>
+<h4 id="（III）注释variants，with-the-chimpanzee-gene-annotation："><a href="#（III）注释variants，with-the-chimpanzee-gene-annotation：" class="headerlink" title="（III）注释variants，with the chimpanzee gene annotation："></a>（III）注释variants，with the chimpanzee gene annotation：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl table_annovar.pl &lt;variant.vcf&gt; chimpdb/ --vcfinput --outfile final --buildver panTro2 --protocol refGene --operation g</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Here <variant.vcf> is the input VCF file， ‘chimpdb/’ is the directory of the downloaded data。</variant.vcf></li>
+</ul>
+<h4 id="（IV）输出结果文件核对。-‘final-panTro2-multianno-txt’-file。The-gene-annotation-for-chimpanzee-is-added-after-the-input-variants。"><a href="#（IV）输出结果文件核对。-‘final-panTro2-multianno-txt’-file。The-gene-annotation-for-chimpanzee-is-added-after-the-input-variants。" class="headerlink" title="（IV）输出结果文件核对。 ‘final.panTro2_multianno.txt’ file。The gene annotation for chimpanzee is added after the input variants。"></a>（IV）输出结果文件核对。 ‘final.panTro2_multianno.txt’ file。The gene annotation for chimpanzee is added after the input variants。</h4><ul>
+<li>关键：如果没有现成可用的gene definition file，可以将基因预测工具产生的GFF3 or GTF文件转换成gene definition file. </li>
+</ul>
+<h3 id="以构建拟南芥（Arabidopsis-thaliana）的注释所需文件为例。"><a href="#以构建拟南芥（Arabidopsis-thaliana）的注释所需文件为例。" class="headerlink" title="以构建拟南芥（Arabidopsis thaliana）的注释所需文件为例。"></a>以构建拟南芥（Arabidopsis thaliana）的注释所需文件为例。</h3><h4 id="1-在http-plants-ensembl-org-info-website-ftp-index-html-下载Arabidopsis的GTF-file-和genome-FASTA-file，到-‘atdb’目录下。"><a href="#1-在http-plants-ensembl-org-info-website-ftp-index-html-下载Arabidopsis的GTF-file-和genome-FASTA-file，到-‘atdb’目录下。" class="headerlink" title="1. 在http://plants.ensembl.org/info/website/ftp/index.html 下载Arabidopsis的GTF file 和genome FASTA file，到  ‘atdb’目录下。"></a>1. 在<a href="http://plants.ensembl.org/info/website/ftp/index.html" target="_blank" rel="noopener">http://plants.ensembl.org/info/website/ftp/index.html</a> 下载Arabidopsis的GTF file 和genome FASTA file，到  ‘atdb’目录下。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmkdir atdb cd atdb wget ftp://ftp.ensemblgenomes.org/pub/release-27/plants/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.27.dna.genome.fa.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget ftp://ftp.ensemblgenomes.org/pub/release-27/plants/gtf/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.27.gtf.gz</span><br></pre></td></tr></table></figure>
+<h4 id="2-解压文件。"><a href="#2-解压文件。" class="headerlink" title="2. 解压文件。"></a>2. 解压文件。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip Arabidopsis_thaliana.TAIR10.27.dna.genome.fa.gz</span><br></pre></td></tr></table></figure>
+<h4 id="3-下载gff3ToGenePred’-或gtfToGenePred工具（http-hgdown-load-soe-ucsc-edu-admin-exe-Linux-x86-64-），推荐使用GTF格式，因为有些GFF3格式文件转换可能不正确。"><a href="#3-下载gff3ToGenePred’-或gtfToGenePred工具（http-hgdown-load-soe-ucsc-edu-admin-exe-Linux-x86-64-），推荐使用GTF格式，因为有些GFF3格式文件转换可能不正确。" class="headerlink" title="3. 下载gff3ToGenePred’ 或gtfToGenePred工具（http://hgdown load.soe.ucsc.edu/admin/exe/Linux.x86_64/），推荐使用GTF格式，因为有些GFF3格式文件转换可能不正确。"></a>3. 下载gff3ToGenePred’ 或gtfToGenePred工具（<a href="http://hgdown" target="_blank" rel="noopener">http://hgdown</a> load.soe.ucsc.edu/admin/exe/Linux.x86_64/），推荐使用GTF格式，因为有些GFF3格式文件转换可能不正确。</h4><h4 id="4-用-gtfToGenePred工具将GTF-file转换-GenePred-file："><a href="#4-用-gtfToGenePred工具将GTF-file转换-GenePred-file：" class="headerlink" title="4. 用 gtfToGenePred工具将GTF file转换 GenePred file："></a>4. 用 gtfToGenePred工具将GTF file转换 GenePred file：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gtfToGenePred -genePredExt Arabidopsis_thaliana.TAIR10.27.gtf AT_refGene.txt</span><br></pre></td></tr></table></figure>
+<h4 id="5-用retrieve-seq-from-fasta-pl生成-transcript-FASTA-file。"><a href="#5-用retrieve-seq-from-fasta-pl生成-transcript-FASTA-file。" class="headerlink" title="5. 用retrieve_seq_from_fasta.pl生成 transcript FASTA file。"></a>5. 用retrieve_seq_from_fasta.pl生成 transcript FASTA file。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl ../retrieve_seq_from_fasta.pl --format refGene --seqfile Arabidopsis_thaliana.TAIR10.27.dna.genome.fa AT_refGene.txt AT_refGeneMrna.fa</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>After this step, the annotation database files needed for gene-based annotation are ready. Now you can annotate a given VCF file using the procedure starting from 二（III）. Please note that the ‘–buildver’ argument should be set to ‘AT’.</p>
+</li>
+<li><p>参考<a href="http://annovar.openbioinformatics.org/en/latest/user-guide/gene/" target="_blank" rel="noopener">http://annovar.openbioinformatics.org/en/latest/user-guide/gene/</a> for more details bases and other arguments are the same as in the human genome annotation.</p>
+</li>
+</ul>
+<blockquote>
+<p>本文转载自lmenjoy的CSDN社区博客，原文地址：<a href="http://blog.csdn.net/u013816205/article/details/51262289。" target="_blank" rel="noopener">http://blog.csdn.net/u013816205/article/details/51262289。</a></p>
+<p>参考文献：<br>Hui Y, Kai W. Genomic variant annotation and prioritization with ANNOVAR and wANNOVAR[J]. Nature Protocols, 2015, 10(10).</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Bioinformatics/" rel="tag"># Bioinformatics</a>
+          
+            <a href="/tags/Annovar/" rel="tag"># Annovar</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/10/annovar 2/" rel="prev" title="Annovar牛的注释库的构建和注释">
+                Annovar牛的注释库的构建和注释 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim"
+                alt="Hao Zhou" />
+            
+              <p class="site-author-name" itemprop="name">Hao Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、用ANNOVAR注释人类基因组variants信息"><span class="nav-number">1.</span> <span class="nav-text">一、用ANNOVAR注释人类基因组variants信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（I）填写登记表，下载ANNOVAR软件（http-annovar-openbio-informatics-org-），-‘annovar-latest-tar-gz’-file，解压文件。"><span class="nav-number">1.1.</span> <span class="nav-text">（I）填写登记表，下载ANNOVAR软件（http://annovar.openbio informatics.org/）， ‘annovar.latest.tar.gz’ file，解压文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（II）下载所有需要的注释信息库，对于基因注释的已经在下好的-ANNOVAR-package中了。如果要进行其他注释，需要按以下命令下载数据库到-‘humandb-’-目录里："><span class="nav-number">1.2.</span> <span class="nav-text">（II）下载所有需要的注释信息库，对于基因注释的已经在下好的 ANNOVAR package中了。如果要进行其他注释，需要按以下命令下载数据库到 ‘humandb/’ 目录里：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（III）用the-‘table-annovar-pl’来注释variants。允许在同一命令中用输出的特定顺序来对多个注释类型进行-自定义选择（custom-selection）。"><span class="nav-number">1.3.</span> <span class="nav-text">（III）用the ‘table_annovar.pl’来注释variants。允许在同一命令中用输出的特定顺序来对多个注释类型进行 自定义选择（custom selection）。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（IV）-‘final-hg19-multianno-vcf’-输出文件应该是以个VCF格式文件，INFO那列以-‘key-value’-形式、-‘-’分割成几个小区域。"><span class="nav-number">1.4.</span> <span class="nav-text">（IV） ‘final.hg19_multianno.vcf’.输出文件应该是以个VCF格式文件，INFO那列以 ‘key=value’ 形式、 ‘;’分割成几个小区域。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（V）-‘final-hg19-multianno-txt’-每一行代表一个variant-。用tab分隔，多余列为加上的注释信息，顺序按-‘–protocol’-选项所设定的注释类型argument。"><span class="nav-number">1.5.</span> <span class="nav-text">（V） ‘final.hg19_multianno.txt’. 每一行代表一个variant 。用tab分隔，多余列为加上的注释信息，顺序按  ‘–protocol’ 选项所设定的注释类型argument。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、用ANNOVAR对非人类的物种进行基于基因的注释（Gene-based-annotation）"><span class="nav-number">2.</span> <span class="nav-text">二、用ANNOVAR对非人类的物种进行基于基因的注释（Gene-based annotation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（I）输入以下命令，下载大猩猩基因组定义文件（gene-definition-file）及序列的-FASTA-文件到‘chimpdb-’目录。"><span class="nav-number">2.1.</span> <span class="nav-text">（I）输入以下命令，下载大猩猩基因组定义文件（gene definition file）及序列的 FASTA 文件到‘chimpdb/’目录。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（II）注意ANNOVAR数据库中只包含人类基因组已建好的转录本，不包含其他物种的。故需要按以下命令自行建立对应物种的transcript-FASTA-file。"><span class="nav-number">2.2.</span> <span class="nav-text">（II）注意ANNOVAR数据库中只包含人类基因组已建好的转录本，不包含其他物种的。故需要按以下命令自行建立对应物种的transcript FASTA file。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（III）注释variants，with-the-chimpanzee-gene-annotation："><span class="nav-number">2.3.</span> <span class="nav-text">（III）注释variants，with the chimpanzee gene annotation：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（IV）输出结果文件核对。-‘final-panTro2-multianno-txt’-file。The-gene-annotation-for-chimpanzee-is-added-after-the-input-variants。"><span class="nav-number">2.4.</span> <span class="nav-text">（IV）输出结果文件核对。 ‘final.panTro2_multianno.txt’ file。The gene annotation for chimpanzee is added after the input variants。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以构建拟南芥（Arabidopsis-thaliana）的注释所需文件为例。"><span class="nav-number">3.</span> <span class="nav-text">以构建拟南芥（Arabidopsis thaliana）的注释所需文件为例。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在http-plants-ensembl-org-info-website-ftp-index-html-下载Arabidopsis的GTF-file-和genome-FASTA-file，到-‘atdb’目录下。"><span class="nav-number">3.1.</span> <span class="nav-text">1. 在http://plants.ensembl.org/info/website/ftp/index.html 下载Arabidopsis的GTF file 和genome FASTA file，到  ‘atdb’目录下。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-解压文件。"><span class="nav-number">3.2.</span> <span class="nav-text">2. 解压文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-下载gff3ToGenePred’-或gtfToGenePred工具（http-hgdown-load-soe-ucsc-edu-admin-exe-Linux-x86-64-），推荐使用GTF格式，因为有些GFF3格式文件转换可能不正确。"><span class="nav-number">3.3.</span> <span class="nav-text">3. 下载gff3ToGenePred’ 或gtfToGenePred工具（http://hgdown load.soe.ucsc.edu/admin/exe/Linux.x86_64/），推荐使用GTF格式，因为有些GFF3格式文件转换可能不正确。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-用-gtfToGenePred工具将GTF-file转换-GenePred-file："><span class="nav-number">3.4.</span> <span class="nav-text">4. 用 gtfToGenePred工具将GTF file转换 GenePred file：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-用retrieve-seq-from-fasta-pl生成-transcript-FASTA-file。"><span class="nav-number">3.5.</span> <span class="nav-text">5. 用retrieve_seq_from_fasta.pl生成 transcript FASTA file。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Zhou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

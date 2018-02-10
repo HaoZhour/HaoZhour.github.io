@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,Bioinformatics," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="wget">
+<meta name="keywords" content="Linux,Bioinformatics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux skill 2">
+<meta property="og:url" content="http://yoursite.com/2018/02/10/Reading notes 2/index.html">
+<meta property="og:site_name" content="H&amp;J Home">
+<meta property="og:description" content="wget">
+<meta property="og:updated_time" content="2018-01-30T16:14:39.219Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux skill 2">
+<meta name="twitter:description" content="wget">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'AURFS67F7M',
+      apiKey: '',
+      indexName: 'hao',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/10/Reading notes 2/"/>
+
+
+
+
+
+  <title>Linux skill 2 | H&J Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H&J Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/Reading notes 2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H&J Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux skill 2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-10T15:39:37+00:00">
+                2018-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/Bioinformatics-Data-Skills-Vince-Buffalo/" itemprop="url" rel="index">
+                    <span itemprop="name">Bioinformatics Data Skills Vince  Buffalo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><a id="more"></a>
+<p>wget –accept “*.gtf” –no-directories –recursive –no-parent \     <a href="http://genomics.someuniversity.edu/labsite/annotation.html" target="_blank" rel="noopener">http://genomics.someuniversity.edu/labsite/annotation.html</a></p>
+<ul>
+<li>–recursive or -r wget will also follow and download the pageslinked to, and even follow and download links on these pages, and so forth. By default(to avoid downloading the entire Internet), wget limits itself to only follow five links</li>
+<li>–level or -l limit be customized </li>
+<li>–no-parent to prevent wget from downloading pages higher in the directory structure</li>
+<li>–accept  “*.gtf”,  which  only  allows  wget  to  download  filenames  matching  this  pattern.</li>
+</ul>
+<h3 id="Rsync-and-Secure-Copy-scp"><a href="#Rsync-and-Secure-Copy-scp" class="headerlink" title="Rsync and Secure Copy (scp)"></a>Rsync and Secure Copy (scp)</h3><ul>
+<li>A better tool for synchronizing these entire directories acrossa network is Rsync.</li>
+<li>Let’s look at an example of how we can use rsync to copy over an entire directory toanother  machine.  Suppose  you’d  like  to  copy  all  of  your  project’s  data  in  zea_mays/data  to  your  colleague’s  directory  /home/deborah/zea_mays/data  on  the  host 192.168.237.42. </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rsync -avz -e ssh zea_mays/data/ vinceb@[...]:/home/deborah/zea_mays/data</span><br></pre></td></tr></table></figure>
+<ul>
+<li>The  most  common  combination  of  rsync  options  used  to  copy  an entire  directory  are  -avz.The  option  -a  enables  wrsync’s  archive  mode,  -z  enables file transfer compression, and -v makes rsync’s progress more verbose so you can see what’s being transferred. Because we’ll be connecting to the remote host through SSH,we also need to use -e ssh.</li>
+<li>You  can  omit  -e  ssh  if  you  connect  to  a  hostthrough an SSH host alias.</li>
+<li>Occasionally,  we  just  need  to  quickly  copy  a  single  file  over  SSH, Secure copy (scp) is perfect for this purpose. </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp Zea_mays.AGPv3.20.gtf 192.168.237.42:/home/deborah/zea_mays/data/</span><br></pre></td></tr></table></figure>
+<h3 id="Looking-at-Differences-Between-Data"><a href="#Looking-at-Differences-Between-Data" class="headerlink" title="Looking at Differences Between Data"></a>Looking at Differences Between Data</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ diff -u gene-1.bed gene-2.bed</span><br></pre></td></tr></table></figure>
+<ul>
+<li>The  option  -u  tells  diff  to  output  in  unified  diff  format,  which  is  a  format  nearlyidentical  to  the  one  used  by  git  diff.  I’ve  chosen  to  use  unified  diffs  rather  thandiff’s default diff format because unified diffs provide more context.</li>
+</ul>
+<h3 id="Compressing-Data-and-Working-with-Compressed-Data"><a href="#Compressing-Data-and-Working-with-Compressed-Data" class="headerlink" title="Compressing Data and Working with Compressed Data"></a>Compressing Data and Working with Compressed Data</h3><ul>
+<li>Gzip and bzip2, Gzip compresses and decompresses data faster than bzip2, but bzip2  has  a  higher  compression  ratio</li>
+<li>gzip can compress results from standard input, Using  gzip,  we  can  compress  trimmer’s  output  in  place,  before  writing to the disk</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ trimmer in.fastq.gz | gzip &gt; out.fastq.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gzip in.fastq</span><br><span class="line">$ ls in.fastq.gz</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Both gzip and gunzip can also output their results to standard out(rather than changing files in place). This can be enabled using the -c option:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gzip -c in.fastq &gt; in.fastq.gz$ gunzip -c in.fastq.gz &gt; duplicate_in.fastq</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls in.fastq.gz in2.fastq$ gzip -c in2.fastq &gt;&gt; in.fastq.gz</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Perhaps  the  greatest  advantage  of  gzip  (and  bzip2)  is  that  many  common  Unix  and bioinformatics  tools  can  work  directly  with  compressed  files.  For  example,  we  cansearch compressed files using grep’s analog for gzipped files, zgrep. Likewise, cat haszcat (on some systems like OS X, this is gzcat), diff has zdiff, and less has zless. If  programs  cannot  handle  compressed  input,  you  can  use  zcat  and  pipe  outputdirectly to the standard input of another program.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ zgrep --color -i -n &quot;AGATAGAT&quot; Csyrichta_TAGGACT_L008_R1_001.fastq.gz</span><br></pre></td></tr></table></figure>
+<h3 id="Case-Study-Reproducibly-Downloading-Data"><a href="#Case-Study-Reproducibly-Downloading-Data" class="headerlink" title="Case Study: Reproducibly Downloading Data"></a>Case Study: Reproducibly Downloading Data</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget ftp://ftp.ensembl.org/[...]/Mus_musculus.GRCm38.74.dna.toplevel.fa.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zgrep &quot;^&gt;&quot; Mus_musculus.GRCm38.74.dna.toplevel.fa.gz | less</span><br></pre></td></tr></table></figure>
+<ul>
+<li>We might want to look at the chromosomes, scaffolds, and contigs this files containsas a sanity check. </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget ftp://ftp.ensembl.org/pub/release-74/fasta/mus_musculus/dna/CHECKSUMS</span><br><span class="line">$ sum Mus_musculus.GRCm38.74.dna.toplevel.fa.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ shasum Mus_musculus.GRCm38.74.dna.toplevel.fa.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget ftp://ftp.ensembl.org/[...]/Mus_musculus.GRCm38.74.gtf.gz</span><br><span class="line">$ wget ftp://ftp.ensembl.org/[...]/CHECKSUMS</span><br></pre></td></tr></table></figure>
+<ul>
+<li>make a readme<br>##Genome and Annotation DataMouse (<em>Mus musculus</em>) reference genome version GRCm38 (Ensemblrelease 74) was downloaded on Sat Feb 22 21:24:42 PST 2014, using:    wget ftp://ftp.ensembl.org/[…]/Mus_musculus.GRCm38.74.dna.toplevel.fa.gzGene annotation data (also Ensembl release 74) was downloaded from Ensembl onSat Feb 22 23:30:27 PST 2014, using:    wget ftp://ftp.ensembl.org/[…]/Mus_musculus.GRCm38.74.gtf.gz## SHA-1 Sums - <code>Mus_musculus.GRCm38.74.dna.toplevel.fa.gz</code>: 01c868e22a9815c[…]c2154c20ae7899c5f - <code>Mus_musculus.GRCm38.74.gtf.gz</code>: cf5bb5f8bda2803[…]708bff59cb575e379</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/Bioinformatics/" rel="tag"># Bioinformatics</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/10/Reading notes 1/" rel="next" title="Linux skill 1">
+                <i class="fa fa-chevron-left"></i> Linux skill 1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/10/Reading notes 3/" rel="prev" title="Linux skill 3">
+                Linux skill 3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim"
+                alt="Hao Zhou" />
+            
+              <p class="site-author-name" itemprop="name">Hao Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#wget"><span class="nav-number">1.</span> <span class="nav-text">wget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rsync-and-Secure-Copy-scp"><span class="nav-number">2.</span> <span class="nav-text">Rsync and Secure Copy (scp)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Looking-at-Differences-Between-Data"><span class="nav-number">3.</span> <span class="nav-text">Looking at Differences Between Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compressing-Data-and-Working-with-Compressed-Data"><span class="nav-number">4.</span> <span class="nav-text">Compressing Data and Working with Compressed Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-Study-Reproducibly-Downloading-Data"><span class="nav-number">5.</span> <span class="nav-text">Case Study: Reproducibly Downloading Data</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Zhou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

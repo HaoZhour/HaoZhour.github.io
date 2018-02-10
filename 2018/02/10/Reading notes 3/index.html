@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,Bioinformatics," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Head">
+<meta name="keywords" content="Linux,Bioinformatics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux skill 3">
+<meta property="og:url" content="http://yoursite.com/2018/02/10/Reading notes 3/index.html">
+<meta property="og:site_name" content="H&amp;J Home">
+<meta property="og:description" content="Head">
+<meta property="og:updated_time" content="2018-01-30T16:14:29.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux skill 3">
+<meta name="twitter:description" content="Head">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'AURFS67F7M',
+      apiKey: '',
+      indexName: 'hao',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/10/Reading notes 3/"/>
+
+
+
+
+
+  <title>Linux skill 3 | H&J Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H&J Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/Reading notes 3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H&J Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux skill 3</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-10T15:39:37+00:00">
+                2018-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/Bioinformatics-Data-Skills-Vince-Buffalo/" itemprop="url" rel="index">
+                    <span itemprop="name">Bioinformatics Data Skills Vince  Buffalo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Head"><a href="#Head" class="headerlink" title="Head"></a>Head</h2><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n 3 Mus_musculus.GRCm38.75_chr1.bed</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ seq 3 &gt; nums.txt</span><br><span class="line">$ cat nums.txt</span><br></pre></td></tr></table></figure>
+<p>1<br>2<br>3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tail -n +2 nums.txt</span><br></pre></td></tr></table></figure>
+<p>2<br>3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(head -n 2; tail -n 2) &lt; Mus_musculus.GRCm38.75_chr1.bed</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## inspect the first and last 3 lines of a file</span><br><span class="line">i() &#123; (head -n 2; tail -n 2) &lt; &quot;$1&quot; | column -t&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ grep &apos;gene_id &quot;ENSMUSG00000025907&quot;&apos; Mus_musculus.GRCm38.75_chr1.gtf | head -n 1</span><br></pre></td></tr></table></figure>
+<p>1 protein_coding  gene  6206197 6276648 […] gene_id “ENSMUSG00000025907” […]</p>
+<h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>space bar</td>
+<td>Next page</td>
+</tr>
+<tr>
+<td>row 2 col 1</td>
+<td>row 2 col 2</td>
+</tr>
+<tr>
+<td>b</td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td>g</td>
+<td>First line</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Last line</td>
+</tr>
+<tr>
+<td>j</td>
+<td>Down (one line at at time)</td>
+</tr>
+<tr>
+<td>k</td>
+<td>Up (one line at at time)</td>
+</tr>
+<tr>
+<td>/<pattern></pattern></td>
+<td>Search down (forward) for string <pattern></pattern></td>
+</tr>
+<tr>
+<td>?<pattern></pattern></td>
+<td>Search up (backward) for string <pattern></pattern></td>
+</tr>
+<tr>
+<td>n</td>
+<td>Repeat last search downward (forward)</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Repeat last search upward (backward)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="wc-ls-and-awk"><a href="#wc-ls-and-awk" class="headerlink" title="wc, ls, and awk"></a>wc, ls, and awk</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wc Mus_musculus.GRCm38.75_chr1.bed</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 81226  243678 1698545 Mus_musculus.GRCm38.75_chr1.bed</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wc Mus_musculus.GRCm38.75_chr1.bed Mus_musculus.GRCm38.75_chr1.gtf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>81226  243678 1698545 Mus_musculus.GRCm38.75_chr1.bed   81231 2385570 26607149 Mus_musculus.GRCm38.75_chr1.gtf  162457 2629248 28305694 total</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wc -l Mus_musculus.GRCm38.75_chr1.bed</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>81226 Mus_musculus.GRCm38.75_chr1.bed</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lh Mus_musculus.GRCm38.75_chr1.bed</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>-rw-r–r–  1 vinceb  staff   <strong><em>1.6M</em></strong> Jul 14 22:40 Mus_musculus.GRCm38.75_chr1.bed</p>
+</blockquote>
+<h3 id="how-many-collums"><a href="#how-many-collums" class="headerlink" title="how many collums"></a>how many collums</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F &quot;\t&quot; &apos;&#123;print NF; exit&#125;&apos; Mus_musculus.GRCm38.75_chr1.bed</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>3</p>
+<h3 id="chop-off-commented-header-then-see"><a href="#chop-off-commented-header-then-see" class="headerlink" title="chop off  commented header then see"></a>chop off  commented header then see</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -n +6 Mus_musculus.GRCm38.75_chr1.gtf | awk -F &quot;\t&quot; &apos;&#123;print NF; exit&#125;&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>16</p>
+<h3 id="a-better-solution-being-less-fragile-and-more-robust"><a href="#a-better-solution-being-less-fragile-and-more-robust" class="headerlink" title="a better solution,being less fragile and more robust"></a>a better solution,being less fragile and more robust</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -v &quot;^#&quot; Mus_musculus.GRCm38.75_chr1.gtf | head -n 3</span><br></pre></td></tr></table></figure>
+<h2 id="Working-with-Column-Data-with-cut-and-Columns"><a href="#Working-with-Column-Data-with-cut-and-Columns" class="headerlink" title="Working with Column Data with cut and Columns"></a>Working with Column Data with cut and Columns</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cut -f 2 Mus_musculus.GRCm38.75_chr1.bed | head -n 3</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>3054233<br>3054233<br>3054233</p>
+<ul>
+<li>can specify  ranges  of  columns  (e.g.,  -f  3-8) <h3 id="convert-our-GTF-to-a-three-column-tab-delimited-file-of-genomic-ranges"><a href="#convert-our-GTF-to-a-three-column-tab-delimited-file-of-genomic-ranges" class="headerlink" title="convert  our  GTF  to  a three-column tab-delimited file of genomic ranges"></a>convert  our  GTF  to  a three-column tab-delimited file of genomic ranges</h3></li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -v &quot;^#&quot; Mus_musculus.GRCm38.75_chr1.gtf | cut -f1,4,5 &gt; test.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -v &quot;^#&quot; Mus_musculus.GRCm38.75_chr1.gtf | cut -f1-8 | head -n3</span><br></pre></td></tr></table></figure>
+<h2 id="make-it-easily-inspect-column-t"><a href="#make-it-easily-inspect-column-t" class="headerlink" title="make it easily inspect, column -t"></a>make it easily inspect, column -t</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -v &quot;^#&quot; Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">column -s&quot;,&quot; -t Mus_musculus.GRCm38.75_chr1_bed.csv | head -n 3</span><br></pre></td></tr></table></figure>
+<h2 id="The-All-Powerful-Grep"><a href="#The-All-Powerful-Grep" class="headerlink" title="The All-Powerful Grep"></a>The All-Powerful Grep</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat example.txt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>bio<br>bioinfo<br>bioinformatics</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -v -w bioinfo example.txt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>bio<br>bioinfo<br>bioinformatics</p>
+</blockquote>
+<ul>
+<li>-w which matchesentire words</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -B1 &quot;AGATCGG&quot; contam.fastq | head -n 6</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -B1 &quot;AGATCGG&quot; contam.fastq | head -n 6</span><br></pre></td></tr></table></figure>
+<ul>
+<li>context before (-B), context: after (-A), andcontext before and after (-C)</li>
+<li>turn on ERE with the -E option </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -c &quot;\t Olfr&quot; Mus_musculus.GRCm38.75_chr1_genes.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>how many lines match a pattern:  -c</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -o &quot;Olfr.*&quot; Mus_musculus.GRCm38.75_chr1_genes.txt | head -n 3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>extract only the matching part of the pattern. We can do this with -o</li>
+</ul>
+<h2 id="Sorting-Plain-Text-Data-with-Sort"><a href="#Sorting-Plain-Text-Data-with-Sort" class="headerlink" title="Sorting Plain-Text Data with Sort"></a>Sorting Plain-Text Data with Sort</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort -k1,1 -k2,2n example.bed</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-k argument takes a range of columns as start,end</li>
+<li>n reating  this  column  asnumerical data</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sort -k1,1 -k2,2n -r example.bed</span><br></pre></td></tr></table></figure>
+<ul>
+<li>sort in reverse order</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sort -k1,1 -k2,2nr example.bed</span><br></pre></td></tr></table></figure>
+<ul>
+<li>specify the reversed collum</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort -k1,1V -k2,2n example2.bed</span><br></pre></td></tr></table></figure>
+<ul>
+<li>avoid sort isn’tsorting  by  the  number<h2 id="Finding-Unique-Values-in-Uniq"><a href="#Finding-Unique-Values-in-Uniq" class="headerlink" title="Finding Unique Values in Uniq"></a>Finding Unique Values in Uniq</h2></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort letters.txt | uniq</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uniq -c letters.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -v &quot;^#&quot; Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | \    sort -rn</span><br></pre></td></tr></table></figure>
+<p>36128 exon<br>25901 CDS<br>7588 UTR<br>4993 transcript<br>2299 stop_codon  </p>
+<h3 id="we-want-to-see-the-number-of-features-belong-to-particular-genes"><a href="#we-want-to-see-the-number-of-features-belong-to-particular-genes" class="headerlink" title="we want to see the number of features belong to particular genes"></a>we want to see the number of features belong to particular genes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;ENSMUSG00000033793&quot; Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort</span><br></pre></td></tr></table></figure>
+<h3 id="check-for-duplicates"><a href="#check-for-duplicates" class="headerlink" title="check for duplicates"></a>check for duplicates</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uniq -d mm_gene_names.txt</span><br></pre></td></tr></table></figure>
+<h2 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">join -1 1 -2 1 example_sorted.bed example_lengths.txt  &gt; example_with_lengths.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-1  <file_1_field>  -2  <file_2_field></file_2_field></file_1_field></li>
+</ul>
+<blockquote>
+<p>chr1    26      39<br>chr1    32      47<br>chr3    11      28<br>chr1    40      49<br>chr3    16      27<br>chr1    9       28<br>chr2    35      54<br>chr1    10      19  </p>
+<p>chr1    58352<br>chr2    39521<br>chr3    24859<br>to<br>chr1  10  19  58352<br>chr1  26  39  58352<br>chr1  32  47  58352<br>chr1  40  49  58352<br>chr1  9   28  58352<br>chr2  35  54  39521  </p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/Bioinformatics/" rel="tag"># Bioinformatics</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/10/Reading notes 2/" rel="next" title="Linux skill 2">
+                <i class="fa fa-chevron-left"></i> Linux skill 2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/10/Reading notes 4/" rel="prev" title="Linux skill 4">
+                Linux skill 4 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim"
+                alt="Hao Zhou" />
+            
+              <p class="site-author-name" itemprop="name">Hao Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Head"><span class="nav-number">1.</span> <span class="nav-text">Head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-number">2.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less"><span class="nav-number">3.</span> <span class="nav-text">less</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wc-ls-and-awk"><span class="nav-number">4.</span> <span class="nav-text">wc, ls, and awk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#how-many-collums"><span class="nav-number">4.1.</span> <span class="nav-text">how many collums</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chop-off-commented-header-then-see"><span class="nav-number">4.2.</span> <span class="nav-text">chop off  commented header then see</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-better-solution-being-less-fragile-and-more-robust"><span class="nav-number">4.3.</span> <span class="nav-text">a better solution,being less fragile and more robust</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Working-with-Column-Data-with-cut-and-Columns"><span class="nav-number">5.</span> <span class="nav-text">Working with Column Data with cut and Columns</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convert-our-GTF-to-a-three-column-tab-delimited-file-of-genomic-ranges"><span class="nav-number">5.1.</span> <span class="nav-text">convert  our  GTF  to  a three-column tab-delimited file of genomic ranges</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#make-it-easily-inspect-column-t"><span class="nav-number">6.</span> <span class="nav-text">make it easily inspect, column -t</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-All-Powerful-Grep"><span class="nav-number">7.</span> <span class="nav-text">The All-Powerful Grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sorting-Plain-Text-Data-with-Sort"><span class="nav-number">8.</span> <span class="nav-text">Sorting Plain-Text Data with Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finding-Unique-Values-in-Uniq"><span class="nav-number">9.</span> <span class="nav-text">Finding Unique Values in Uniq</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#we-want-to-see-the-number-of-features-belong-to-particular-genes"><span class="nav-number">9.1.</span> <span class="nav-text">we want to see the number of features belong to particular genes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#check-for-duplicates"><span class="nav-number">9.2.</span> <span class="nav-text">check for duplicates</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Join"><span class="nav-number">10.</span> <span class="nav-text">Join</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Zhou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

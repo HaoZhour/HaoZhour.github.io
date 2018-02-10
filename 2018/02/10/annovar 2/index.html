@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Bioinformatics,Annovar," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基因数据库构建">
+<meta name="keywords" content="Bioinformatics,Annovar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Annovar牛的注释库的构建和注释">
+<meta property="og:url" content="http://yoursite.com/2018/02/10/annovar 2/index.html">
+<meta property="og:site_name" content="H&amp;J Home">
+<meta property="og:description" content="基因数据库构建">
+<meta property="og:updated_time" content="2018-02-07T11:35:51.367Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Annovar牛的注释库的构建和注释">
+<meta name="twitter:description" content="基因数据库构建">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'AURFS67F7M',
+      apiKey: '',
+      indexName: 'hao',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/10/annovar 2/"/>
+
+
+
+
+
+  <title>Annovar牛的注释库的构建和注释 | H&J Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H&J Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/annovar 2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H&J Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Annovar牛的注释库的构建和注释</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-10T15:39:37+00:00">
+                2018-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Evolution/" itemprop="url" rel="index">
+                    <span itemprop="name">Evolution</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="基因数据库构建"><a href="#基因数据库构建" class="headerlink" title="基因数据库构建"></a>基因数据库构建</h3><a id="more"></a>
+<h4 id="1-Download-gene-definition-file"><a href="#1-Download-gene-definition-file" class="headerlink" title="1.Download gene definition file"></a>1.Download gene definition file</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hzhou@login1(rvchpc1) annovar]$./annotate_variation.pl -downdb -buildver bosTau6  gene bosdb</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-buildver 表示version</li>
+<li>-downdb 下载数据库的指令</li>
+<li>实际上所有的数据都在这里，<a href="http://hgdownload.cse.ucsc.edu/goldenPath/bosTau6/database/" target="_blank" rel="noopener">http://hgdownload.cse.ucsc.edu/goldenPath/bosTau6/database/</a></li>
+</ul>
+<h4 id="2-Download-sequence-file"><a href="#2-Download-sequence-file" class="headerlink" title="2.Download sequence file"></a>2.Download sequence file</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hzhou@login1(rvchpc1) annovar]$ ./annotate_variation.pl --buildver bosTau6 --downdb seq bosdb/bosTau6_seq</span><br></pre></td></tr></table></figure>
+<h4 id="3-extract-mRNA-sequece"><a href="#3-extract-mRNA-sequece" class="headerlink" title="3.extract mRNA sequece"></a>3.extract mRNA sequece</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hzhou@login1(rvchpc1) annovar]$./retrieve_seq_from_fasta.pl bosdb/bosTau6_refGene.txt -seqfile bosdb/bosTau6_seq/bosTau6.fa -format refGene -outfile bosdb/bosTau6_refGeneMrna.fa</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><h4 id="用table-annovar-pl进行注释（可一次性完成三种类型的注释）"><a href="#用table-annovar-pl进行注释（可一次性完成三种类型的注释）" class="headerlink" title="用table_annovar.pl进行注释（可一次性完成三种类型的注释）"></a>用table_annovar.pl进行注释（可一次性完成三种类型的注释）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">table_annovar.pl \</span><br><span class="line">example/ex1.avinput humandb/ \</span><br><span class="line">-buildver hg19 \               #表示使用hg19版本</span><br><span class="line">-out myanno \                  #前缀</span><br><span class="line">-remove \                          #表示删除注释过程中的临时文件</span><br><span class="line">-protocol refGene,cytoBand,exac03,avsnp147,dbnsfp30a \   # 注释来源数据库</span><br><span class="line">-operation gx,r,f,f,f \           # 注释的类型</span><br><span class="line">-nastring . \                        #表示用点号替代缺省的</span><br><span class="line">-csvout \                            #输出cvs文件</span><br><span class="line">-polish \</span><br><span class="line">-xref example/gene_xref.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出的csv文件将包含输入的5列主要信息以及各个数据库里的注释，此外，table_annoval.pl可以直接对vcf文件进行注释（不需要转换格式），注释的内容将会放在vcf文件的“INFO”那一栏。</li>
+</ul>
+<h4 id="用Gene-based-Annotation-基于基因的注释"><a href="#用Gene-based-Annotation-基于基因的注释" class="headerlink" title="用Gene-based Annotation(基于基因的注释)"></a>用Gene-based Annotation(基于基因的注释)</h4><p>基于基因的注释（gene-based annotation）揭示variant与已知基因直接的关系以及对其产生的功能性影响，需要使用 gene-based 的数据库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;annovar&#125;/annotate_variation.pl -geneanno -dbtype ensGene -out ensA10 -build bosTau6 $&#123;input&#125;  bosdb/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-geneanno  表示使用基于基因的注释</li>
+<li>-dbtype refGene  表示使用”refGene”数据库，这里也可以用ensGene</li>
+<li>-out ex1  表示输出文件以ex1为前缀 </li>
+<li>example/ex1.avinput 输入文件</li>
+<li><p>因为annotate_variation.pl默认使用gene-based注释类型以及refGene数据库，所以上面的命令可以缺省-geneanno -dbtype refGene。</p>
+<p>运行命令后将会生成3个文件：</p>
+</li>
+<li>ex1.variant_function 注释所有变异所在基因及位置</li>
+<li>ex1.exonicvariantfunction 详细注释外显子区域的变异功能、类型、氨基酸改变等</li>
+<li>ex1.ann.log log文件，包含运行的命令行及运行提示，所用数据库文件</li>
+</ul>
+<hr>
+<h3 id="用ensemble基因数据的注释（ensemble基因数据比ref的详细）"><a href="#用ensemble基因数据的注释（ensemble基因数据比ref的详细）" class="headerlink" title="用ensemble基因数据的注释（ensemble基因数据比ref的详细）"></a>用ensemble基因数据的注释（ensemble基因数据比ref的详细）</h3><h4 id="1-下载-gene-definition-file"><a href="#1-下载-gene-definition-file" class="headerlink" title="1.下载  gene definition file"></a>1.下载  gene definition file</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hzhou@login1(rvchpc1) annovar]$./annotate_variation.pl -downdb -buildver bosTau6  ensGene bosdb</span><br></pre></td></tr></table></figure>
+<ul>
+<li>牛用knownGene注释不行，因为UCSC的数据库中没有它。</li>
+</ul>
+<h5 id="2-抽取-mRNA-sequece"><a href="#2-抽取-mRNA-sequece" class="headerlink" title="2.抽取 mRNA sequece"></a>2.抽取 mRNA sequece</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hzhou@login1(rvchpc1) annovar]$./retrieve_seq_from_fasta.pl bosdb/bosTau6_ensGene.txt -seqfile bosdb/bosTau6_seq/bosTau6.fa -format ensGene -outfile bosdb/bosTau6_ensGeneMrna.fa</span><br></pre></td></tr></table></figure>
+<h5 id="3-进行注释"><a href="#3-进行注释" class="headerlink" title="3.进行注释"></a>3.进行注释</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;annovar&#125;/annotate_variation.pl -out bos -build bosTau6 $&#123;input&#125;  bosdb/ -dbtype ensGene</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>输入文件的染色体名字一定要和注释文件的一样。</li>
+</ul>
+<h4 id="参考文档非常详细"><a href="#参考文档非常详细" class="headerlink" title="参考文档非常详细"></a>参考文档非常详细</h4><blockquote>
+<p><a href="https://www.plob.org/article/9976.html" target="_blank" rel="noopener">https://www.plob.org/article/9976.html</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Bioinformatics/" rel="tag"># Bioinformatics</a>
+          
+            <a href="/tags/Annovar/" rel="tag"># Annovar</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/10/annovar 1/" rel="next" title="annovar 对人类基因组和非人类基因组variants注释流程">
+                <i class="fa fa-chevron-left"></i> annovar 对人类基因组和非人类基因组variants注释流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/10/Reading notes 1/" rel="prev" title="Linux skill 1">
+                Linux skill 1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim"
+                alt="Hao Zhou" />
+            
+              <p class="site-author-name" itemprop="name">Hao Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基因数据库构建"><span class="nav-number">1.</span> <span class="nav-text">基因数据库构建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Download-gene-definition-file"><span class="nav-number">1.1.</span> <span class="nav-text">1.Download gene definition file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Download-sequence-file"><span class="nav-number">1.2.</span> <span class="nav-text">2.Download sequence file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-extract-mRNA-sequece"><span class="nav-number">1.3.</span> <span class="nav-text">3.extract mRNA sequece</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">2.</span> <span class="nav-text">注释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用table-annovar-pl进行注释（可一次性完成三种类型的注释）"><span class="nav-number">2.1.</span> <span class="nav-text">用table_annovar.pl进行注释（可一次性完成三种类型的注释）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用Gene-based-Annotation-基于基因的注释"><span class="nav-number">2.2.</span> <span class="nav-text">用Gene-based Annotation(基于基因的注释)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用ensemble基因数据的注释（ensemble基因数据比ref的详细）"><span class="nav-number">3.</span> <span class="nav-text">用ensemble基因数据的注释（ensemble基因数据比ref的详细）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-下载-gene-definition-file"><span class="nav-number">3.1.</span> <span class="nav-text">1.下载  gene definition file</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-抽取-mRNA-sequece"><span class="nav-number">3.1.1.</span> <span class="nav-text">2.抽取 mRNA sequece</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-进行注释"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.进行注释</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意事项"><span class="nav-number">3.2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文档非常详细"><span class="nav-number">3.3.</span> <span class="nav-text">参考文档非常详细</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Zhou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
