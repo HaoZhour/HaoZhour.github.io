@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="population history,Bioinformatics," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Calling consensus sequence for each chromosome for each samples">
+<meta name="keywords" content="population history,Bioinformatics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PSMC workflow">
+<meta property="og:url" content="http://yoursite.com/2018/06/14/PSMC/index.html">
+<meta property="og:site_name" content="H&amp;J Home">
+<meta property="og:description" content="Calling consensus sequence for each chromosome for each samples">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-06-14T10:48:32.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PSMC workflow">
+<meta name="twitter:description" content="Calling consensus sequence for each chromosome for each samples">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'AURFS67F7M',
+      apiKey: '',
+      indexName: 'hao',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/14/PSMC/"/>
+
+
+
+
+
+  <title>PSMC workflow | H&J Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H&J Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/14/PSMC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H&J Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PSMC workflow</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-14T11:48:26+01:00">
+                2018-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Evolution/" itemprop="url" rel="index">
+                    <span itemprop="name">Evolution</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Calling-consensus-sequence-for-each-chromosome-for-each-samples"><a href="#Calling-consensus-sequence-for-each-chromosome-for-each-samples" class="headerlink" title="Calling consensus sequence for each chromosome for each samples"></a>Calling consensus sequence for each chromosome for each samples</h3><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATAPATH=&quot;/users/lbuggiotti/WGresRussia/umd_3_1&quot;</span><br><span class="line">DATA=&quot;/users/lbuggiotti/WGresRussia/raw_data/BQSR_recalBAM&quot;</span><br><span class="line">chr=&quot;./sample.txt&quot;</span><br><span class="line">B=$(($SGE_TASK_ID-1))</span><br><span class="line">IDX=$(($B % 40))</span><br><span class="line">input=$(tail -n+$&#123;IDX&#125; $&#123;chr&#125; | head -n1)</span><br><span class="line"></span><br><span class="line">for i in Chr&#123;1..29&#125; ChrX; do /users/hzhou/tools/samtools/bin/samtools mpileup -C50 -uf  $&#123;DATAPATH&#125;/umd_3_1_reference.fa -r $&#123;i&#125; $&#123;input&#125; | \</span><br><span class="line">/users/hzhou/tools/bcftools-1.3.1/bcftools call -c | \</span><br><span class="line">/users/hzhou/tools/bcftools-1.3.1/vcfutils.pl vcf2fq -d 4 -D 22  &gt; $&#123;input##*/&#125;.$&#123;i&#125;.fq ;done</span><br></pre></td></tr></table></figure>
+<p>samtools:</p>
+<ul>
+<li>-Q and -q in mpileup determine the cutoffs for baseQ and mapQ, respectively</li>
+<li>-v tells mpileup to produce vcf output, and -u says that should be uncompressed</li>
+<li>-f is the reference fasta used (needs to be indexed)</li>
+<li>-r is the region to call the mpileup for (in this case, a particular chromosome based on the array task id)</li>
+<li>bam is the bam file to use<br>bcftools:</li>
+<li>call -c calls a consensus sequence from the mpileup using the original calling method<br>vcfutils.pl:</li>
+<li>-d 4 and -d 22 determine the minimum and maximum coverage to allow for vcf2fq, anything outside that range is filtered</li>
+<li>-Q 30 sets the root mean squared mapping quality minimum to 30</li>
+</ul>
+<h3 id="merge-all-our-single-chromosome-fastq-files-into-a-single-consensus-sequence-for-each-sample"><a href="#merge-all-our-single-chromosome-fastq-files-into-a-single-consensus-sequence-for-each-sample" class="headerlink" title="merge all our single-chromosome fastq files into a single consensus sequence for each sample"></a>merge all our single-chromosome fastq files into a single consensus sequence for each sample</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for i in A&#123;1..45&#125;; do cat ./fq/$&#123;i&#125;.Chr*.fq &gt; $&#123;i&#125;.consensus.fq ;done</span><br></pre></td></tr></table></figure>
+<h3 id="convert-this-fastq-file-to-the-input-format-for-PSMC"><a href="#convert-this-fastq-file-to-the-input-format-for-PSMC" class="headerlink" title="convert this fastq file to the input format for PSMC"></a>convert this fastq file to the input format for PSMC</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i in A&#123;1..45&#125;; do /users/hzhou/tools/psmc-master/utils/fq2psmcfa ./$&#123;i&#125;.consensus.fq &gt; $&#123;i&#125;.psmcfa ;done</span><br><span class="line">wait</span><br><span class="line">for i in A&#123;1..45&#125;; /users/hzhou/tools/psmc-master/psmc -p &quot;4+25*2+4+6&quot; -o $&#123;i&#125;.psmc $&#123;i&#125;.psmcfa ;done</span><br></pre></td></tr></table></figure>
+<h3 id="To-plot-picture"><a href="#To-plot-picture" class="headerlink" title="To plot picture"></a>To plot picture</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/users/hzhou/tools/psmc-master/utils/psmc_plot.pl -u 1e-08 -g 5  -RM A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A12,A13,A14,A15,A16,A17,A18,A21,A22,A25,A26,A27,A28,A29,A30,A31,A32,A33,A34,A35,A36,A37,A38,A39,A40,A41,A42,A43,A44,A45 test1 ./A1.psmc ./A2.psmc ./A3.psmc ./A4.psmc ./A5.psmc ./A6.psmc ./A7.psmc ./A8.psmc  ./A9.psmc ./A10.psmc ./A12.psmc ./A13.psmc ./A14.psmc ./A15.psmc ./A16.psmc ./A17.psmc ./A18.psmc ./A21.psmc ./A22.psmc   ./A25.psmc ./A26.psmc ./A27.psmc ./A28.psmc ./A29.psmc ./A30.psmc ./A31.psmc ./A32.psmc ./A33.psmc ./A34.psmc ./A35.psmc ./A36.psmc ./A37.psmc ./A38.psmc ./A39.psmc ./A40.psmc ./A41.psmc ./A42.psmc ./A43.psmc ./A44.psmc ./A45.psmc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-R do not remove temporary files to inout gnuplot</li>
+<li>-M  multiline mode</li>
+</ul>
+<h3 id="bootstrap-100-times"><a href="#bootstrap-100-times" class="headerlink" title="bootstrap 100 times"></a>bootstrap 100 times</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i in A&#123;1..45&#125;; do /users/hzhou/tools/psmc-master/utils/splitfa $&#123;i&#125;.psmcfa &gt; $&#123;i&#125;.split.fa ;done</span><br><span class="line">wait</span><br><span class="line">for i in A&#123;1..45&#125;; do parallel -j50 &quot;/users/hzhou/tools/psmc-master/psmc -N25 -t15 -r5 -b -p &quot;4+25*2+4+6&quot; $&#123;i&#125;.split.fa -o $&#123;i&#125;.100.round-&#123;&#125;.psmc&quot; :::: &lt;(seq 100) ;done</span><br><span class="line">wait</span><br><span class="line">for i in A&#123;1..45&#125;; do cat $&#123;i&#125;.psmc $&#123;i&#125;.100.round-*.psmc &gt; $&#123;i&#125;.100.combined.psmc ;done</span><br></pre></td></tr></table></figure>
+<h4 id="plot-bootstap"><a href="#plot-bootstap" class="headerlink" title="plot bootstap"></a>plot bootstap</h4><p>ls <em>.combined.psmc |while read id ;do /users/hzhou/tools/psmc-master/utils/psmc_plot.pl -R ${id%%.</em>} $id ;done</p>
+<h3 id="draw-better-picture-using-gnuplot-5-2-windows"><a href="#draw-better-picture-using-gnuplot-5-2-windows" class="headerlink" title="draw better picture using gnuplot 5.2 (windows)"></a>draw better picture using gnuplot 5.2 (windows)</h3><h4 id="change-the-drictory-to-files-stored-then-input-the-scripts"><a href="#change-the-drictory-to-files-stored-then-input-the-scripts" class="headerlink" title="change the drictory to files stored,  then input the scripts"></a>change the drictory to files stored,  then input the scripts</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">set size 1, 0.8;</span><br><span class="line">  set xran [10000:*];</span><br><span class="line">  set log x;</span><br><span class="line">  set format x &quot;10^&#123;%L&#125;&quot;;</span><br><span class="line">  set mxtics 10;</span><br><span class="line">  set mytics 10;</span><br><span class="line">  unset grid;</span><br><span class="line">  set key right top;</span><br><span class="line">  set xlab &quot;Years (g=5, &#123;/Symbol m&#125;=1.0x10^&#123;-8&#125;)&quot; font &quot;Helvetica,16&quot;;</span><br><span class="line">  set yran [0:2];</span><br><span class="line">  set style line 1 lt 1 lc rgb &quot;#FF0000&quot; lw 1;</span><br><span class="line">  set style line 2 lt 1 lc rgb &quot;#00C000&quot; lw 1;</span><br><span class="line"> plot &quot;K.txt&quot; u 1:2 t &quot;KHOLMOGORY&quot; w st ls 1, &quot;Y.txt&quot; u 1:2 t &quot;YAKUT&quot; w st ls 2</span><br><span class="line"> </span><br><span class="line"> - edit the plot comment about the &quot;file name.txt(outputed by psmc_plot.pl)&quot; and lables</span><br><span class="line"> - yran means y axis</span><br><span class="line"> - ls means stye line set</span><br></pre></td></tr></table></figure>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p><a href="https://github.com/lh3/psmc/blob/master/README" target="_blank" rel="noopener">https://github.com/lh3/psmc/blob/master/README</a><br><a href="https://informatics.fas.harvard.edu/psmc-journal-club-walkthrough.html" target="_blank" rel="noopener">https://informatics.fas.harvard.edu/psmc-journal-club-walkthrough.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/population-history/" rel="tag"># population history</a>
+          
+            <a href="/tags/Bioinformatics/" rel="tag"># Bioinformatics</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/14/MSMC/" rel="next" title="MSMC workflow">
+                <i class="fa fa-chevron-left"></i> MSMC workflow
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim"
+                alt="Hao Zhou" />
+            
+              <p class="site-author-name" itemprop="name">Hao Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Calling-consensus-sequence-for-each-chromosome-for-each-samples"><span class="nav-number">1.</span> <span class="nav-text">Calling consensus sequence for each chromosome for each samples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge-all-our-single-chromosome-fastq-files-into-a-single-consensus-sequence-for-each-sample"><span class="nav-number">2.</span> <span class="nav-text">merge all our single-chromosome fastq files into a single consensus sequence for each sample</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convert-this-fastq-file-to-the-input-format-for-PSMC"><span class="nav-number">3.</span> <span class="nav-text">convert this fastq file to the input format for PSMC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#To-plot-picture"><span class="nav-number">4.</span> <span class="nav-text">To plot picture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bootstrap-100-times"><span class="nav-number">5.</span> <span class="nav-text">bootstrap 100 times</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#plot-bootstap"><span class="nav-number">5.1.</span> <span class="nav-text">plot bootstap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#draw-better-picture-using-gnuplot-5-2-windows"><span class="nav-number">6.</span> <span class="nav-text">draw better picture using gnuplot 5.2 (windows)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#change-the-drictory-to-files-stored-then-input-the-scripts"><span class="nav-number">6.1.</span> <span class="nav-text">change the drictory to files stored,  then input the scripts</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reference"><span class="nav-number">7.</span> <span class="nav-text">reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Zhou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
