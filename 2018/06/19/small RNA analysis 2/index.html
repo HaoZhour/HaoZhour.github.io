@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="UK," />
+  <meta name="keywords" content="Tools,Linux," />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="More interestingly">
-<meta name="keywords" content="UK">
+<meta name="description" content="mirdeep2是分析已知成熟miRNA和新miRNA的工具">
+<meta name="keywords" content="Tools,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="China new year">
-<meta property="og:url" content="http://yoursite.com/2018/02/16/China new year/index.html">
+<meta property="og:title" content="mirdeep2 的使用">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/small RNA analysis 2/index.html">
 <meta property="og:site_name" content="H&amp;J Home">
-<meta property="og:description" content="More interestingly">
+<meta property="og:description" content="mirdeep2是分析已知成熟miRNA和新miRNA的工具">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p39keqca4.bkt.clouddn.com/blog/180216/685kkFkcm7.png?imageslim">
-<meta property="og:image" content="http://p39keqca4.bkt.clouddn.com/blog/180216/aCHK78FCdE.png?imageslim">
-<meta property="og:updated_time" content="2018-06-19T10:18:45.460Z">
+<meta property="og:updated_time" content="2018-06-19T10:41:50.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="China new year">
-<meta name="twitter:description" content="More interestingly">
-<meta name="twitter:image" content="http://p39keqca4.bkt.clouddn.com/blog/180216/685kkFkcm7.png?imageslim">
+<meta name="twitter:title" content="mirdeep2 的使用">
+<meta name="twitter:description" content="mirdeep2是分析已知成熟miRNA和新miRNA的工具">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/16/China new year/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/19/small RNA analysis 2/"/>
 
 
 
 
 
-  <title>China new year | H&J Home</title>
+  <title>mirdeep2 的使用 | H&J Home</title>
   
 
 
@@ -266,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/16/China new year/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/small RNA analysis 2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Zhou">
@@ -283,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">China new year</h1>
+          <h1 class="post-title" itemprop="name headline">mirdeep2 的使用</h1>
         
 
         <div class="post-meta">
@@ -295,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-16T13:47:31+00:00">
-                2018-02-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-19T11:41:50+01:00">
+                2018-06-19
               </time>
             
 
@@ -318,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">life</span>
+                  <a href="/categories/Small-RNA-seq-data-analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">Small RNA-seq data analysis</span>
                   </a>
                 </span>
 
@@ -355,8 +352,42 @@
       
 
       
-        <p>More interestingly<br><a id="more"></a><br>Last night I went to China town to buy some dumplings and vegetables, I also bought a bottle of wine. More interestingly, when I was taking wine to cashier,he allows me to show my ID to him, I said I didn’t bring ID, he asked me how old are you? I told him I was 26, he didn’t believe me, he said look, a boy of 26. But finally he sold the wine to me. I’m a year older, but why do other people think I’m younger?<br>Anyway, Then I went home to cook, while my roommate was not at home, he went to work, and I left a bowl of dumplings for him.</p>
-<p><img src="http://p39keqca4.bkt.clouddn.com/blog/180216/685kkFkcm7.png?imageslim" alt="mark"><br><img src="http://p39keqca4.bkt.clouddn.com/blog/180216/aCHK78FCdE.png?imageslim" alt="mark"></p>
+        <h3 id="mirdeep2是分析已知成熟miRNA和新miRNA的工具"><a href="#mirdeep2是分析已知成熟miRNA和新miRNA的工具" class="headerlink" title="mirdeep2是分析已知成熟miRNA和新miRNA的工具"></a>mirdeep2是分析已知成熟miRNA和新miRNA的工具</h3><a id="more"></a>
+<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><ul>
+<li>cel_cluster.fa: 参考基因组</li>
+<li>mature_ref_this_species.fa:这个物种的成熟miRNA</li>
+<li>mature_ref_other_species.fa: 其他物种的成熟miRNA（最好是相近的物种）</li>
+<li>precursors_ref_this_species.fa:这个物种的hairbin 序列</li>
+<li>reads.fa: 测序的去除重复序列的unqiue序列。</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="Step-1-去除重复序列"><a href="#Step-1-去除重复序列" class="headerlink" title="Step 1:去除重复序列"></a>Step 1:去除重复序列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">collapse_reads.pl reads.fa bos &gt; mirdeep.coll.fa</span><br></pre></td></tr></table></figure>
+<p>note：</p>
+<ul>
+<li>bos是要加上的物种，官网主页上的documentation 还没有更新这里要加物种，不加会报错。</li>
+<li>要用它的自带的程序 collapse_reads_md.pl 去除，因为要求reads的header 符合格式如下：<blockquote>
+<p>Collapses reads in the fasta file to make each sequence entry unique. Each collapsed<br>entry will have an identifier that follows an underscore ‘_’ separated format. Example:<br>mmu_1189273_x10</p>
+</blockquote>
+</li>
+<li>我的数据是用其他程序collapse的，header只有reads数目10，本想手动改成seq_x10，结果报错说必须要有这三部分，并且每一个header还要是unique。</li>
+</ul>
+<h4 id="Step-2-建立参考基因组索引"><a href="#Step-2-建立参考基因组索引" class="headerlink" title="Step 2: 建立参考基因组索引"></a>Step 2: 建立参考基因组索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bowtie-build cel_cluster.fa cel_cluster</span><br></pre></td></tr></table></figure>
+<h4 id="Step-3-比对"><a href="#Step-3-比对" class="headerlink" title="Step 3: 比对"></a>Step 3: 比对</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapper.pl reads.fa -c -j -k TCGTATGCCGTCTTCTGCTTGT  -l 18 -m -p cel_cluster -s reads_collapsed.fa -t reads_collapsed_vs_genome.arf -v</span><br></pre></td></tr></table></figure>
+<h4 id="Step-4-对已知的microRNA进行定量（可以剩去，直接第5步）"><a href="#Step-4-对已知的microRNA进行定量（可以剩去，直接第5步）" class="headerlink" title="Step 4:对已知的microRNA进行定量（可以剩去，直接第5步）"></a>Step 4:对已知的microRNA进行定量（可以剩去，直接第5步）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quantifier.pl -p precursors_ref_this_species.fa -m mature_ref_this_species.fa -r reads_collapsed.fa -t cel -y 16_19</span><br></pre></td></tr></table></figure>
+<h4 id="Step-5-鉴定已知和未知的microRNA"><a href="#Step-5-鉴定已知和未知的microRNA" class="headerlink" title="Step 5:鉴定已知和未知的microRNA"></a>Step 5:鉴定已知和未知的microRNA</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">miRDeep2.pl reads_collapsed.fa cel_cluster.fa reads_collapsed_vs_genome.arf mature_ref_this_species.fa mature_ref_other_species.fa precursors_ref_this_species.fa -t C.elegans 2&gt; report.log</span><br></pre></td></tr></table></figure>
+<p>note：</p>
+<ul>
+<li>这里所有输入的fa数据的header，还有arf格式的数据不能有空格，字段之间要求以_链接。看了一些还提供几个脚本检查数据是否合格。不合格的还有脚本进行转化。</li>
+<li>其他的还有一些脚本进行各种常用数据格式的转化，利用起来不用再写类似的脚本啦</li>
+</ul>
+<h3 id="可能的报错"><a href="#可能的报错" class="headerlink" title="可能的报错"></a>可能的报错</h3><ul>
+<li>mirdeep is not in arf format 问题是reads header格式不对，严格参考这个格式mmu_1189273_x10</li>
+<li>mirdeep does not start with ‘&gt;identifier’ 问题是reads header格式不对，严格参考这个格式mmu_1189273_x10</li>
+<li>.fa has not allowed whitespaces in its first identifier 问题是输入文件有空格存在，替换成_ 即可。</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
+<p><a href="http://seqanswers.com/forums/showthread.php?t=43657" target="_blank" rel="noopener">http://seqanswers.com/forums/showthread.php?t=43657</a></p>
+<p><a href="https://www.mdc-berlin.de/36105849/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep/documentation" target="_blank" rel="noopener">https://www.mdc-berlin.de/36105849/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep/documentation</a></p>
+</blockquote>
 
       
     </div>
@@ -374,7 +405,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/UK/" rel="tag"># UK</a>
+            <a href="/tags/Tools/" rel="tag"># Tools</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
@@ -387,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/10/关于学生短期签证在英国开银行卡/" rel="next" title="关于学生短期签证在英国开银行卡">
-                <i class="fa fa-chevron-left"></i> 关于学生短期签证在英国开银行卡
+              <a href="/2018/06/19/small RNA analysis 1/" rel="next" title="small RNA analysis 常用的数据库">
+                <i class="fa fa-chevron-left"></i> small RNA analysis 常用的数据库
               </a>
             
           </div>
@@ -396,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/31/easter holiday/" rel="prev" title="复活节stonehenge 和 bath 玩了一天">
-                复活节stonehenge 和 bath 玩了一天 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -451,8 +480,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -516,6 +554,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mirdeep2是分析已知成熟miRNA和新miRNA的工具"><span class="nav-number">1.</span> <span class="nav-text">mirdeep2是分析已知成熟miRNA和新miRNA的工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">2.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">3.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-1-去除重复序列"><span class="nav-number">3.1.</span> <span class="nav-text">Step 1:去除重复序列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-2-建立参考基因组索引"><span class="nav-number">3.2.</span> <span class="nav-text">Step 2: 建立参考基因组索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-3-比对"><span class="nav-number">3.3.</span> <span class="nav-text">Step 3: 比对</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-4-对已知的microRNA进行定量（可以剩去，直接第5步）"><span class="nav-number">3.4.</span> <span class="nav-text">Step 4:对已知的microRNA进行定量（可以剩去，直接第5步）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-5-鉴定已知和未知的microRNA"><span class="nav-number">3.5.</span> <span class="nav-text">Step 5:鉴定已知和未知的microRNA</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可能的报错"><span class="nav-number">4.</span> <span class="nav-text">可能的报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">4.1.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
