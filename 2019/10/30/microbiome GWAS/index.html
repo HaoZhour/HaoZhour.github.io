@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="UK," />
+  <meta name="keywords" content="Tools,Linux," />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="More interestingly">
-<meta name="keywords" content="UK">
+<meta name="description" content="说明mGWAS 是一种分析宿主基因组与肠道菌群有利的方法，展示的这个软件只需要宿主的vcf(已经过滤完的高质量位点) 和微生物的unifrac文件">
+<meta name="keywords" content="Tools,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="China new year">
-<meta property="og:url" content="http://yoursite.com/2018/02/16/China new year/index.html">
+<meta property="og:title" content="microbiome GWAS 分析流程">
+<meta property="og:url" content="http://yoursite.com/2019/10/30/microbiome GWAS/index.html">
 <meta property="og:site_name" content="H&amp;J Home">
-<meta property="og:description" content="More interestingly">
+<meta property="og:description" content="说明mGWAS 是一种分析宿主基因组与肠道菌群有利的方法，展示的这个软件只需要宿主的vcf(已经过滤完的高质量位点) 和微生物的unifrac文件">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p39keqca4.bkt.clouddn.com/blog/180216/685kkFkcm7.png?imageslim">
-<meta property="og:image" content="http://p39keqca4.bkt.clouddn.com/blog/180216/aCHK78FCdE.png?imageslim">
-<meta property="og:updated_time" content="2018-06-19T10:18:45.460Z">
+<meta property="og:updated_time" content="2019-10-30T13:50:24.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="China new year">
-<meta name="twitter:description" content="More interestingly">
-<meta name="twitter:image" content="http://p39keqca4.bkt.clouddn.com/blog/180216/685kkFkcm7.png?imageslim">
+<meta name="twitter:title" content="microbiome GWAS 分析流程">
+<meta name="twitter:description" content="说明mGWAS 是一种分析宿主基因组与肠道菌群有利的方法，展示的这个软件只需要宿主的vcf(已经过滤完的高质量位点) 和微生物的unifrac文件">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/16/China new year/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/10/30/microbiome GWAS/"/>
 
 
 
 
 
-  <title>China new year | H&J Home</title>
+  <title>microbiome GWAS 分析流程 | H&J Home</title>
   
 
 
@@ -266,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/16/China new year/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/microbiome GWAS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Zhou">
@@ -283,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">China new year</h1>
+          <h1 class="post-title" itemprop="name headline">microbiome GWAS 分析流程</h1>
         
 
         <div class="post-meta">
@@ -295,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-16T21:47:31+08:00">
-                2018-02-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T21:44:22+08:00">
+                2019-10-30
               </time>
             
 
@@ -318,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">life</span>
+                  <a href="/categories/metagenomic-data-analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">metagenomic data analysis</span>
                   </a>
                 </span>
 
@@ -355,8 +352,15 @@
       
 
       
-        <p>More interestingly<br><a id="more"></a><br>Last night I went to China town to buy some dumplings and vegetables, I also bought a bottle of wine. More interestingly, when I was taking wine to cashier,he allows me to show my ID to him, I said I didn’t bring ID, he asked me how old are you? I told him I was 26, he didn’t believe me, he said look, a boy of 26. But finally he sold the wine to me. I’m a year older, but why do other people think I’m younger?<br>Anyway, Then I went home to cook, while my roommate was not at home, he went to work, and I left a bowl of dumplings for him.</p>
-<p><img src="http://p39keqca4.bkt.clouddn.com/blog/180216/685kkFkcm7.png?imageslim" alt="mark"><br><img src="http://p39keqca4.bkt.clouddn.com/blog/180216/aCHK78FCdE.png?imageslim" alt="mark"></p>
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>mGWAS 是一种分析宿主基因组与肠道菌群有利的方法，展示的这个软件只需要宿主的vcf(已经过滤完的高质量位点) 和微生物的unifrac文件<br><a id="more"></a></p>
+<h3 id="抽取两组样本"><a href="#抽取两组样本" class="headerlink" title="抽取两组样本"></a>抽取两组样本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bcftools view -Ou -S ./../info/pop_yang.txt All_gallus.reindiv.filter.snp.vcf -O z -o ./All_gallus.reindiv.filter.snp.yang.vcf.gz </span><br><span class="line">bcftools view -Ou -S ./../info/pop_yang.txt /media/menghe/banma/gbs/D201706010/4SNP/filtered.vcf  -O z -o All_gallus.reindiv.filter.snp.heplink.yang.vcf.gz</span><br></pre></td></tr></table></figure>
+<h3 id="看第一列样本名，检查样本是否抽取正确"><a href="#看第一列样本名，检查样本是否抽取正确" class="headerlink" title="看第一列样本名，检查样本是否抽取正确"></a>看第一列样本名，检查样本是否抽取正确</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcat /media/menghe/banma/gbs/D201706010/4SNP/All_gallus.vcf.gz | grep -v &apos;##&apos; |head -n 1 |xargs -n1</span><br></pre></td></tr></table></figure>
+<h3 id="转化成vcf为bed-fam-格式"><a href="#转化成vcf为bed-fam-格式" class="headerlink" title="转化成vcf为bed fam 格式"></a>转化成vcf为bed fam 格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plink2 --vcf All_gallus.reindiv.filter.snp.heplink.yang.vcf.gz --allow-extra-chr --chr-set 35  --make-bed --out All_gallus.reindiv.filter.snp.heplink.yang</span><br></pre></td></tr></table></figure>
+<h3 id="mGWA-代码"><a href="#mGWA-代码" class="headerlink" title="mGWA 代码"></a>mGWA 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rscript microbiomeGWAS-tools/R/microbiomeGWAS_v1.0.R -r /home/menghe/haozhou/mGWAS/microbiomeGWAS-tools -p /home/menghe/haozhou/mGWAS/2-mgwas_analysis/All_gallus.reindiv.filter.snp.yang  -d info/weighted_unifrac_dm.bnum.yang.txt -o 2-mgwas_analysis/</span><br></pre></td></tr></table></figure>
+<h3 id="筛选显著位点"><a href="#筛选显著位点" class="headerlink" title="筛选显著位点"></a>筛选显著位点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;$NF&lt;0.00001&#123;print $0&#125;&apos; zhoufiltered.snp.yang.result.txt</span><br></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><blockquote>
+<p>MicrobiomeGWAS: a tool for identifying host genetic variants associated with microbiome composition</p>
+</blockquote>
 
       
     </div>
@@ -374,7 +378,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/UK/" rel="tag"># UK</a>
+            <a href="/tags/Tools/" rel="tag"># Tools</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
@@ -387,8 +393,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/11/关于学生短期签证在英国开银行卡/" rel="next" title="关于学生短期签证在英国开银行卡">
-                <i class="fa fa-chevron-left"></i> 关于学生短期签证在英国开银行卡
+              <a href="/2019/01/18/分享一些英文写作神器/" rel="next" title="分享一些英文写作神器">
+                <i class="fa fa-chevron-left"></i> 分享一些英文写作神器
               </a>
             
           </div>
@@ -397,8 +403,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/31/easter holiday/" rel="prev" title="复活节stonehenge 和 bath 玩了一天">
-                复活节stonehenge 和 bath 玩了一天 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/30/宏基因组分析流程/" rel="prev" title="宏基因组分析流程">
+                宏基因组分析流程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -451,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -516,6 +531,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽取两组样本"><span class="nav-number">1.1.</span> <span class="nav-text">抽取两组样本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#看第一列样本名，检查样本是否抽取正确"><span class="nav-number">1.2.</span> <span class="nav-text">看第一列样本名，检查样本是否抽取正确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转化成vcf为bed-fam-格式"><span class="nav-number">1.3.</span> <span class="nav-text">转化成vcf为bed fam 格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mGWA-代码"><span class="nav-number">1.4.</span> <span class="nav-text">mGWA 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#筛选显著位点"><span class="nav-number">1.5.</span> <span class="nav-text">筛选显著位点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">1.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
