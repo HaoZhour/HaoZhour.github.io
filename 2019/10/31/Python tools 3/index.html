@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Tools,Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="说明This script gathers &amp;amp; converts emapper annotation  output into something that item can be compared (“csv files”). put all the annotation file and gene counts files  in one directory, and it will">
+<meta name="keywords" content="Tools,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="处理宏基因组注释的emapper软件的输出结果">
+<meta property="og:url" content="http://yoursite.com/2019/10/31/Python tools 3/index.html">
+<meta property="og:site_name" content="Hao &amp; Jia Biosharer">
+<meta property="og:description" content="说明This script gathers &amp;amp; converts emapper annotation  output into something that item can be compared (“csv files”). put all the annotation file and gene counts files  in one directory, and it will">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-31T10:44:41.539Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="处理宏基因组注释的emapper软件的输出结果">
+<meta name="twitter:description" content="说明This script gathers &amp;amp; converts emapper annotation  output into something that item can be compared (“csv files”). put all the annotation file and gene counts files  in one directory, and it will">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'AURFS67F7M',
+      apiKey: '',
+      indexName: 'hao',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/31/Python tools 3/"/>
+
+
+
+
+
+  <title>处理宏基因组注释的emapper软件的输出结果 | Hao & Jia Biosharer</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hao & Jia Biosharer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/31/Python tools 3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hao & Jia Biosharer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">处理宏基因组注释的emapper软件的输出结果</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-31T18:44:41+08:00">
+                2019-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Python tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>This script gathers &amp; converts emapper annotation  output into something that item can be compared (“csv files”).</p>
+<p>put all the annotation file and gene counts files  in one directory, and it will create a bunch of ‘.csv’ files that you can load into R.</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">#-- coding:utf-8 --</span><br><span class="line"></span><br><span class="line">import os, os.path</span><br><span class="line">import sys</span><br><span class="line">import csv</span><br><span class="line">import pandas as pd</span><br><span class="line">import string</span><br><span class="line">from itertools import islice </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def separate_annotation_file(root, filename,outname):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    #将每个样本的总注释文件分开为各注释（KEGG,GO等）文件 (item\tgene).</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    print(&apos;Loading counts from:&apos;)#, root, filename, sys.stderr)</span><br><span class="line">    full_file = os.path.join(root, filename)  #路径拼接</span><br><span class="line">    inputfile=pd.read_table(full_file,skiprows=[0,1,2,3,4],sep=&quot;\t&quot;,header=None,names=[&quot;query_name&quot;,&quot;seed_eggNOG_ortholog&quot;,&quot;seed_ortholog_evalue&quot;,&quot;seed_ortholog_score&quot;,&quot;best_tax_level&quot;,&quot;Preferred_name&quot;,&quot;GOs&quot;,&quot;EC&quot;,&quot;KEGG_ko&quot;,&quot;KEGG_Pathway&quot;,&quot;KEGG_Module&quot;,&quot;KEGG_Reaction&quot;,&quot;KEGG_rclass&quot;,&quot;BRITE&quot;,&quot;KEGG_TC&quot;,&quot;CAZy&quot;,&quot;BiGG_Reaction&quot;,&quot;taxon&quot;,&quot;COG&quot;,&quot;NA&quot;,&quot;COGclass&quot;,&quot;Gene_descrip&quot;],index_col=[&quot;query_name&quot;])</span><br><span class="line">    inputfile[&quot;GOs&quot;].dropna().to_csv(&quot;%s.GOs&quot;%outname,sep=&quot;\t&quot;)</span><br><span class="line">   inputfile[&quot;KEGG_ko&quot;].dropna().to_csv(&quot;%s.KEGG_ko&quot;%outname,sep=&quot;\t&quot;)</span><br><span class="line">    inputfile[&quot;KEGG_Pathway&quot;].dropna().to_csv(&quot;%s.KEGG_Pathway&quot;%outname,sep=&quot;\t&quot;)</span><br><span class="line">    inputfile[&quot;COG&quot;].dropna().to_csv(&quot;%s.COG&quot;%outname,sep=&quot;\t&quot;)</span><br><span class="line">    inputfile[&quot;EC&quot;].dropna().to_csv(&quot;%s.EC&quot;%outname,sep=&quot;\t&quot;)</span><br><span class="line">    inputfile[&quot;CAZy&quot;].dropna().to_csv(&quot;%s.CAZy&quot;%outname,sep=&quot;\t&quot;)</span><br><span class="line">    inputfile[&quot;COGclass&quot;].dropna().to_csv(&quot;%s.COGclass&quot;%outname,sep=&quot;\t&quot;)</span><br><span class="line">    inputfile[&quot;best_tax_level&quot;].dropna().to_csv(&quot;%s.best_tax_level&quot;%outname,sep=&quot;\t&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def replace(sample,group):</span><br><span class="line">    # 将提取出来的gene,item文件melt，随后将每个gene替换成他的丰度值,其中sample是样品名group是item。</span><br><span class="line">    print(&apos;now:&apos;, sample, group)</span><br><span class="line">    f = open(sample,&apos;r&apos;)</span><br><span class="line">    f2=open(&quot;all.faa.nr.2&quot;)</span><br><span class="line">             </span><br><span class="line">    item_list=[]</span><br><span class="line">    for line in f.readlines():</span><br><span class="line">        a=line.strip(&quot;\n&quot;).split(&quot;\t&quot;)</span><br><span class="line">        items=a[1]</span><br><span class="line">        gene=a[0]</span><br><span class="line">        </span><br><span class="line">                                        #这里不能用字典，用列表，因为item是重复的，gene也是重复的，key是唯一的</span><br><span class="line">        item_list.append([items,gene])   #like[[GO,gene],[GO,gene]]</span><br><span class="line">#   print(len(item_list))                                                                                                                           </span><br><span class="line">    g_value=&#123;&#125;</span><br><span class="line">    for line in f2.readlines():</span><br><span class="line">        a = line.strip(&quot;\n&quot;).split(&quot;\t&quot;)</span><br><span class="line">        g_value[a[0]] = a[1]         #&#123;gene:abundunce,gene:abundunce&#125;</span><br><span class="line">                                                                                                                                                               </span><br><span class="line">    for a in item_list:                     #完成替换   </span><br><span class="line">        a[1]=g_value.get(a[1],0)</span><br><span class="line">    di2=&#123;&#125;</span><br><span class="line">    for a in item_list:     #先定义每个item 都是0</span><br><span class="line">        di2[a[0]]=a[1]</span><br><span class="line">    for a in item_list:     #再累加</span><br><span class="line">        di2[a[0]]+=a[1]        </span><br><span class="line">    print(len(list(di2.keys())))</span><br><span class="line">    dict = pd.DataFrame.from_dict(di2,orient=&apos;index&apos;,columns =[sample]) #orient 参数: 键做列名‘columns’, 键做行名‘index’</span><br><span class="line">    ndict = dict[~dict[&apos;value&apos;].isin([0])]</span><br><span class="line">    dict.to_csv(&quot;CAG_taxon.csv&quot;)  </span><br><span class="line"></span><br><span class="line">replace(&quot;cluster_out&quot;,&quot;1&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line"></span><br><span class="line">    sampleIDlist= []</span><br><span class="line">    start_dir = &apos;.&apos;</span><br><span class="line">    print(&apos;Starting in:&apos;, os.path.abspath(start_dir),sys.stderr)</span><br><span class="line">    for root, dirs, files in os.walk(&apos;.&apos;):</span><br><span class="line">        for filename in files:</span><br><span class="line">            if filename.endswith(&apos;emapper.annotations&apos;):</span><br><span class="line">                dirname = os.path.basename(root) #返回path最后的文件名</span><br><span class="line">                outname = filename.split(&apos;.&apos;)[0]</span><br><span class="line">                separate_annotation_file(root, filename, outname)</span><br><span class="line">                sampleIDlist.append(outname)</span><br><span class="line">    print(sampleIDlist)</span><br><span class="line"></span><br><span class="line">    items=[&quot;GOs&quot;,&quot;KEGG_ko&quot;,&quot;KEGG_Pathway&quot;,&quot;COG&quot;,&quot;EC&quot;,&quot;CAZy&quot;,&quot;COGclass&quot;]</span><br><span class="line">    for sample in sampleIDlist:</span><br><span class="line">        for item in items:</span><br><span class="line">            replace(sample,item)</span><br><span class="line">    print &quot;,\n&quot;.join([ &quot;\&quot;%s\&quot;&quot; % i for i in sorted(quantlist)])</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tools/" rel="tag"># Tools</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/31/Python tools 2/" rel="next" title="将运行文件中的指定后缀的文件合并成矩阵的形式，用于差异筛选">
+                <i class="fa fa-chevron-left"></i> 将运行文件中的指定后缀的文件合并成矩阵的形式，用于差异筛选
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p39keqca4.bkt.clouddn.com/blog/180128/Ibm7g4cDjf.jpg?imageslim"
+                alt="Hao Zhou" />
+            
+              <p class="site-author-name" itemprop="name">Hao Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Zhou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
